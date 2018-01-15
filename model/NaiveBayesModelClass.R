@@ -1,24 +1,21 @@
 library(e1071)
 source(file="./model/ClassificationModelClass.R")
+setOldClass("naiveBayes")
 
 NaiveBayesModelClass <- setRefClass(
   Class="NaiveBayesModelClass",
   fields=list(
-    modelFile = "character",
-    modelName="character"
+    model="naiveBayes"
   ),
   methods = list(
-    initialize = function(path = './temp', categories = NULL) {
-      modelFile <<- paste(path, 'model.R', sep = '/')
-      modelName <<- 'naiveBayes'
+    initialize = function() {
+      name <<- 'naiveBayes'
     },
-    trainModel = function(data) {
-      bayesModel <- naiveBayes(label ~ ., data)
-      save(bayesModel, file = modelFile)
+    trainModel = function(trainData) {
+      model <<- naiveBayes(label ~ ., trainData)
     },
-    predictLabels = function(test) {
-      load(modelFile)
-      predict(bayesModel, test, type = 'raw')
+    predictLabels = function(testData) {
+      predict(model, testData, type = 'raw')
     }
   ),
   contains=c("ClassificationModelClass")

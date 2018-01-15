@@ -4,14 +4,11 @@ source(file="./model/ClassificationModelClass.R")
 kNNModelClass <- setRefClass(
   Class="kNNModelClass",
   fields=list(
-    modelFile = "character",
-    modelName="character",
     trainData="data.frame"
   ),
   methods = list(
-    initialize = function(path = './temp', categories = NULL) {
-      modelFile <<- paste(path, 'model.R', sep = '/')
-      modelName <<- 'kNNModelClass'
+    initialize = function() {
+      name <<- 'kNN'
     },
     trainModel = function(data) {
       trainData <<- data

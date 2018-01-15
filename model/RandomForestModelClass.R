@@ -1,24 +1,21 @@
 library(randomForest)
 source(file="./model/ClassificationModelClass.R")
+setOldClass("randomForest.formula")
 
 RandomForestModelClass <- setRefClass(
   Class="RandomForestModelClass",
   fields=list(
-    modelFile = "character",
-    modelName="character"
+    model="randomForest.formula"
   ),
   methods = list(
-    initialize = function(path = './temp', categories = NULL) {
-      modelFile <<- paste(path, 'model.R', sep = '/')
-      modelName <<- 'randomForest'
+    initialize = function() {
+      name <<- 'randomForest'
     },
     trainModel = function(trainData) {
-      rfModel <- randomForest(label ~ ., data = trainData)
-      save(rfModel, file = modelFile)
+      model <<- randomForest(label ~ ., data = trainData)
     },
     predictLabels = function(testData) {
-      load(modelFile)
-      predict(rfModel, testData, type = 'prob')
+      predict(model, testData, type = 'prob')
     }
   ),
   contains=c("ClassificationModelClass")

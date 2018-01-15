@@ -11,6 +11,9 @@ DataClass <- setRefClass(
     getData = function(category) {
       print("DataClass: getData, data with Label as Category")
     },
+    getTestData = function() {
+      print("getTestData: getData, data without label")
+    },
     getClassificationCategories = function() {
       print("DataClass: getClassificationCategories, categories to classify")
     }

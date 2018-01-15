@@ -23,7 +23,11 @@ BialystokCrimeDataClass <- setRefClass(
     },
     getData = function(category) {
       data <- rawData[, c("lat", "lng", "day", "month", "year")]
-      data$label <- ifelse(rawData$category==category, 1, 0)
+      data$label <- as.factor(ifelse(rawData$category==category, 1, 0))
+      data
+    },
+    getTestData = function() {
+      data <- rawData[, c("lat", "lng", "day", "month", "year")]
       data
     },
     getClassificationCategories = function() {

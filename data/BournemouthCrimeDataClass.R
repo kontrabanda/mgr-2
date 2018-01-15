@@ -20,7 +20,11 @@ BournemouthCrimeDataClass <- setRefClass(
     },
     getData = function(category) {
       data <- rawData[, c("lat", "lng", "month")]
-      data$label <- ifelse(rawData$category==category, 1, 0)
+      data$label <- as.factor(ifelse(rawData$category==category, 1, 0))
+      data
+    },
+    getTestData = function() {
+      data <- rawData[, c("lat", "lng", "month")]
       data
     },
     getClassificationCategories = function() {
