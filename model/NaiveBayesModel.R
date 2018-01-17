@@ -1,9 +1,9 @@
 library(e1071)
-source(file="./model/ClassificationModelClass.R")
+source(file="./model/ClassificationModelBase.R")
 setOldClass("naiveBayes")
 
-NaiveBayesModelClass <- setRefClass(
-  Class="NaiveBayesModelClass",
+NaiveBayesModel <- setRefClass(
+  Class="NaiveBayesModel",
   fields=list(
     model="naiveBayes"
   ),
@@ -18,5 +18,5 @@ NaiveBayesModelClass <- setRefClass(
       predict(model, testData, type = 'raw')
     }
   ),
-  contains=c("ClassificationModelClass")
+  contains=c("ClassificationModelBase")
 )

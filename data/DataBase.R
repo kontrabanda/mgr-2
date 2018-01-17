@@ -1,21 +1,21 @@
-DataClass <- setRefClass(
-  Class="DataClass",
+DataBase <- setRefClass(
+  Class="DataBase",
   fields=list(
     rawData="data.frame",
     name='character'
   ),
   methods = list(
     init = function() {
-      print("DataClass: init") 
+      print("DataBase: init") 
     },
     getData = function(category) {
-      print("DataClass: getData, data with Label as Category")
+      print("DataBase: getData, data with Label as Category")
     },
     getTestData = function() {
       print("getTestData: getData, data without label")
     },
     getClassificationCategories = function() {
-      print("DataClass: getClassificationCategories, categories to classify")
+      print("DataBase: getClassificationCategories, categories to classify")
     }
   )
 )

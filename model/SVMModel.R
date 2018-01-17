@@ -1,14 +1,14 @@
 library(liquidSVM)
-source(file="./model/ClassificationModelClass.R")
+source(file="./model/ClassificationModelBase.R")
 
-SVMModelClass <- setRefClass(
-  Class="SVMModelClass",
+SVMModel <- setRefClass(
+  Class="SVMModel",
   fields=list(
     model="liquidSVM"
   ),
   methods = list(
     initialize = function() {
-      name <<- 'svmModelClass'
+      name <<- 'SVM'
     },
     trainModel = function(trainData) {
       trainData$label <- as.factor(ifelse(trainData$label==1, 1, -1))
@@ -20,5 +20,5 @@ SVMModelClass <- setRefClass(
       pred
     }
   ),
-  contains=c("ClassificationModelClass")
+  contains=c("ClassificationModelBase")
 )

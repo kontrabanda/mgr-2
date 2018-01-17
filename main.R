@@ -1,42 +1,46 @@
-source(file="./data/BialystokCrimeDataClass.R")
-source(file="./data/BostonCrimeDataClass.R")
-source(file="./data/BournemouthCrimeDataClass.R")
+source(file="./data/BialystokData.R")
+source(file="./data/BostonData.R")
+source(file="./data/BournemouthData.R")
 
-source(file="./model/LogisticRegressionModelClass.R")
-source(file="./model/kNNModelClass.R")
-source(file="./model/NaiveBayesModelClass.R")
-source(file="./model/RandomForestModelClass.R")
-source(file="./model/SVMModelClass.R")
+source(file="./model/LogisticRegressionModel.R")
+source(file="./model/KNNModel.R")
+source(file="./model/NaiveBayesModel.R")
+source(file="./model/RandomForestModel.R")
+source(file="./model/SVMModel.R")
 
-bialystokCrimeDataClass <- BialystokCrimeDataClass()
+source(file="./strategy/Classification.R")
+
+bialystokCrimeDataClass <- BialystokData()
 categories <- bialystokCrimeDataClass$getClassificationCategories()
 trainData <- bialystokCrimeDataClass$getData(categories[1])
 trainData <- trainData[1:1000, ]
 testData <- bialystokCrimeDataClass$getTestData()
 testData <- testData[1001:2000, ]
 
-logisticRegressionModelClass <- LogisticRegressionModelClass()
-logisticRegressionModelClass$trainModel(trainData)
-result <- logisticRegressionModelClass$predictLabels(testData)
+classification <- Classification(LogisticRegressionModel)
+result1 <- classification$classify(trainData, testData)
 
-knnModelClass <- kNNModelClass()
-knnModelClass$trainModel(trainData)
-result <- knnModelClass$predictLabels(testData)
+classification <- Classification(KNNModel)
+result2 <- classification$classify(trainData, testData)
 
-naiveBayesModelClass <- NaiveBayesModelClass()
-naiveBayesModelClass$trainModel(trainData)
-result <- naiveBayesModelClass$predictLabels(testData)
+classification <- Classification(NaiveBayesModel)
+result3 <- classification$classify(trainData, testData)
 
-randomForestModelClass <- RandomForestModelClass()
-randomForestModelClass$trainModel(trainData)
-result <- randomForestModelClass$predictLabels(testData)
+classification <- Classification(RandomForestModel)
+result4 <- classification$classify(trainData, testData)
 
-svmModelClass <- SVMModelClass()
-svmModelClass$trainModel(trainData)
-result <- svmModelClass$predictLabels(testData)
+classification <- Classification(SVMModel)
+result5 <- classification$classify(trainData, testData)
+
+source(file="./strategy/SaveResults.R")
+
+saveResults <- SaveResults('bayes', 'CHU')
+saveResults$save(1, testData)
 
 
-rm(bialystokCrimeDataClass, categories, test)
+
+
+
 
 
 bostonCrimeDataClass <- BostonCrimeDataClass()

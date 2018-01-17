@@ -1,7 +1,7 @@
-source(file="./model/ClassificationModelClass.R")
+source(file="./model/ClassificationModelBase.R")
 
-LogisticRegressionModelClass <- setRefClass(
-  Class="LogisticRegressionModelClass",
+LogisticRegressionModel <- setRefClass(
+  Class="LogisticRegressionModel",
   fields=list(
     model="lm"
   ),
@@ -13,11 +13,12 @@ LogisticRegressionModelClass <- setRefClass(
       model <<- glm(label~., family=binomial(link='logit'), data=trainData)
     },
     predictLabels = function(testData) {
-      result <- data.frame(matrix(NA, nrow = nrow(testData), ncol = 1))
-      colnames(result) <- c('result')
+      result <- data.frame(matrix(NA, nrow = nrow(testData), ncol = 2))
+      colnames(result) <- c(1, 0)
       result[, 1] <- predict(model, newdata = testData, type = 'response')
+      result[, 2] <- 1 - result[, 1]
       result
     }
   ),
-  contains=c("ClassificationModelClass")
+  contains=c("ClassificationModelBase")
 )

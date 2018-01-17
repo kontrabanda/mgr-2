@@ -1,8 +1,8 @@
 library(kknn)
-source(file="./model/ClassificationModelClass.R")
+source(file="./model/ClassificationModelBase.R")
 
-kNNModelClass <- setRefClass(
-  Class="kNNModelClass",
+KNNModel <- setRefClass(
+  Class="KNNModel",
   fields=list(
     trainData="data.frame"
   ),
@@ -18,5 +18,5 @@ kNNModelClass <- setRefClass(
       results$prob
     }
   ),
-  contains=c("ClassificationModelClass")
+  contains=c("ClassificationModelBase")
 )

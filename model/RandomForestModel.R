@@ -1,9 +1,9 @@
 library(randomForest)
-source(file="./model/ClassificationModelClass.R")
+source(file="./model/ClassificationModelBase.R")
 setOldClass("randomForest.formula")
 
-RandomForestModelClass <- setRefClass(
-  Class="RandomForestModelClass",
+RandomForestModel <- setRefClass(
+  Class="RandomForestModel",
   fields=list(
     model="randomForest.formula"
   ),
@@ -18,5 +18,5 @@ RandomForestModelClass <- setRefClass(
       predict(model, testData, type = 'prob')
     }
   ),
-  contains=c("ClassificationModelClass")
+  contains=c("ClassificationModelBase")
 )

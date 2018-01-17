@@ -1,8 +1,8 @@
 library(lubridate)
-source(file="./data/DataClass.R")
+source(file="./data/DataBase.R")
 
-BostonCrimeDataClass <- setRefClass(
-  Class="BostonCrimeDataClass",
+BostonData <- setRefClass(
+  Class="BostonData",
   fields=list(
     rawData="data.frame"
   ),
@@ -35,5 +35,5 @@ BostonCrimeDataClass <- setRefClass(
       unique(rawData$category)
     }
   ),
-  contains=c("DataClass")
+  contains=c("DataBase")
 )
