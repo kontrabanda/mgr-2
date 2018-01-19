@@ -7,7 +7,9 @@ Classification <- setRefClass(
     name="character"
   ),
   methods = list(
-    initialize = function(ClassificationModel) {
+    initialize = function(ClassificationModel = NULL) {
+      if(is.null(ClassificationModel)) return();
+      
       ClassificationModel <<- ClassificationModel
       classficationModel <- ClassificationModel()
       name <<- classficationModel$name

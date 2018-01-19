@@ -16,6 +16,9 @@ DataBase <- setRefClass(
     },
     getClassificationCategories = function() {
       print("DataBase: getClassificationCategories, categories to classify")
+    },
+    getRowSize = function() {
+      nrow(rawData)
     }
   )
 )

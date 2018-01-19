@@ -9,8 +9,17 @@ source(file="./model/RandomForestModel.R")
 source(file="./model/SVMModel.R")
 
 source(file="./strategy/Classification.R")
+source(file="./strategy/CrossValidation.R")
 
-bialystokCrimeDataClass <- BialystokData()
+source(file="./strategy/ReadResults.R")
+
+crossValidation <- CrossValidation(BialystokData, NaiveBayesModel)
+crossValidation$crossValidation()
+
+readResults <- ReadResults('naiveBayes', 'CHU')
+data <- readResults$read()
+
+
 categories <- bialystokCrimeDataClass$getClassificationCategories()
 trainData <- bialystokCrimeDataClass$getData(categories[1])
 trainData <- trainData[1:1000, ]
@@ -34,8 +43,10 @@ result5 <- classification$classify(trainData, testData)
 
 source(file="./strategy/SaveResults.R")
 
-saveResults <- SaveResults('bayes', 'CHU')
-saveResults$save(1, testData)
+saveResults <- SaveResults('badyes')
+saveResults$save('TED', 1, testData)
+
+
 
 
 

@@ -6,23 +6,23 @@ SaveResults <- setRefClass(
     mainPath="character"
   ),
   methods = list(
-    initialize = function(classificatorName, categoryName) {
-      mainPath <<- createMainPath('./results', classificatorName, categoryName)
+    initialize = function(classificatorName = '') {
+      mainPath <<- createMainPath('./results', classificatorName)
     },
-    createMainPath = function(containerPath, classificatorName, categoryName) {
+    createMainPath = function(containerPath, classificatorName) {
       path <- containerPath
       dir.create(path)
       path <- paste(path, classificatorName, sep = '/')
       dir.create(path)
-      path <- paste(path, categoryName, sep = '/')
-      dir.create(path)
       path
     },
-    save = function(iteration, results) {
-      write.csv(results, file = getIterationPath(iteration))
+    save = function(categoryName, fileName, data) {
+      write.csv(data, file = getPath(categoryName, fileName))
     },
-    getIterationPath = function(iteration) {
-      path <- paste(mainPath, iteration, sep = '/')
+    getPath = function(categoryName, fileName) {
+      path <- paste(mainPath, categoryName, sep = '/')
+      dir.create(path)
+      path <- paste(path, fileName, sep = '/')
       path <- paste(path, 'csv', sep = '.')
       path
     }
