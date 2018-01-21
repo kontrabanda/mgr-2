@@ -9,7 +9,7 @@ BostonData <- setRefClass(
   methods = list(
     initialize = function() {
       name <<- "boston"
-      bostonData <- read.csv(file = "../data/usa/crimes/crime_only_boston.csv")
+      bostonData <- read.csv(file = const$bostonDataPath)
       data <- setNames(data.frame(matrix(ncol = 7, nrow = nrow(bostonData))), c("lat", "lng", "hour", "day", "month", "year", "category"))
       
       data$hour <- bostonData$HOUR

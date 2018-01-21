@@ -12,10 +12,10 @@ CrossValidation <- setRefClass(
     folds="integer"
   ),
   methods = list(
-    initialize = function(DataClass, ClassificationModel) {
+    initialize = function(dataClass, ClassificationModel) {
       classification <<- Classification(ClassificationModel)
-      dataClass <<- DataClass()
-      saveResults <<- SaveResults(classification$name)
+      dataClass <<- dataClass
+      saveResults <<- SaveResults(dataClass$name, classification$name)
       folds <<- setFolds()
     },
     setFolds = function() {

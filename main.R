@@ -1,3 +1,5 @@
+source(file="./const.R")
+
 source(file="./data/BialystokData.R")
 source(file="./data/BostonData.R")
 source(file="./data/BournemouthData.R")
@@ -12,57 +14,24 @@ source(file="./strategy/Classification.R")
 source(file="./strategy/CrossValidation.R")
 
 source(file="./strategy/ReadResults.R")
+source(file="./rating/BinaryRating.R")
 
-crossValidation <- CrossValidation(BialystokData, NaiveBayesModel)
+bialystokData <- BialystokData()
+
+
+crossValidation <- CrossValidation(bialystokData, NaiveBayesModel)
 crossValidation$crossValidation()
 
-readResults <- ReadResults('naiveBayes', 'CHU')
-data <- readResults$read()
+binaryRating <- BinaryRating(bialystokData, NaiveBayesModel)
+binaryRating$computeRating()
+binaryRating$aucs
 
 
-categories <- bialystokCrimeDataClass$getClassificationCategories()
-trainData <- bialystokCrimeDataClass$getData(categories[1])
-trainData <- trainData[1:1000, ]
-testData <- bialystokCrimeDataClass$getTestData()
-testData <- testData[1001:2000, ]
+pr <- prediction(data$getProbabilites(), data$getLabel())
+rocPerf <- performance(pr, measure = "tpr", x.measure = "fpr")
+plot(rocPerf)
+auc <- performance(pr, measure = "auc")
+auc@y.values[[1]]
 
-classification <- Classification(LogisticRegressionModel)
-result1 <- classification$classify(trainData, testData)
+prob <- data$getProbabilites()
 
-classification <- Classification(KNNModel)
-result2 <- classification$classify(trainData, testData)
-
-classification <- Classification(NaiveBayesModel)
-result3 <- classification$classify(trainData, testData)
-
-classification <- Classification(RandomForestModel)
-result4 <- classification$classify(trainData, testData)
-
-classification <- Classification(SVMModel)
-result5 <- classification$classify(trainData, testData)
-
-source(file="./strategy/SaveResults.R")
-
-saveResults <- SaveResults('badyes')
-saveResults$save('TED', 1, testData)
-
-
-
-
-
-
-
-
-
-bostonCrimeDataClass <- BostonCrimeDataClass()
-categories <- bostonCrimeDataClass$getClassificationCategories()
-test <- bostonCrimeDataClass$getData(categories[1])
-
-rm(bostonCrimeDataClass, categories, test)
-
-
-bournemouthCrimeDataClass <- BournemouthCrimeDataClass()
-categories <- bournemouthCrimeDataClass$getClassificationCategories()
-test <- bournemouthCrimeDataClass$getData(categories[1])
-
-rm(bournemouthCrimeDataClass, categories, test)

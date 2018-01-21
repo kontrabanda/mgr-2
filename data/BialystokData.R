@@ -9,7 +9,7 @@ BialystokData <- setRefClass(
   methods = list(
     initialize = function() {
       name <<- "bialystok"
-      crimeBialystokDF <- read.csv("../data/Polska/zdarzenia_rsow_bialystok.csv", sep = ",")
+      crimeBialystokDF <- read.csv(const$bialystokDataPath, sep = ",")
       crimeBialystokDF$DATA <- as.Date(crimeBialystokDF$DATA, "%y/%m/%d")
       
       data <- setNames(data.frame(matrix(ncol = 6, nrow = nrow(crimeBialystokDF))), c("lat", "lng", "day", "month", "year", "category"))

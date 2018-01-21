@@ -9,7 +9,7 @@ BournemouthData <- setRefClass(
   methods = list(
     initialize = function() {
       name <<- "bournemouth"
-      bournemouthData <- read.csv(file = "../data/gb/crimes/crime_only_bournemouth.csv")
+      bournemouthData <- read.csv(file = const$bournemouthDataPath)
       data <- setNames(data.frame(matrix(ncol = 4, nrow = nrow(bournemouthData))), c("lat", "lng", "month", "category"))
       
       data$month <- bournemouthData$Month

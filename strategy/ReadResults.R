@@ -1,21 +1,23 @@
+source(file="./result/BinaryResults.R")
+
 ReadResults <- setRefClass(
   Class="ReadResults",
   fields=list(
     path="character"
   ),
   methods = list(
-    initialize = function(classificatorName = '', categoryName = '') {
-      path <<- getPath(classificatorName, categoryName)
+    initialize = function(dataName = '', classificatorName = '', categoryName = '') {
+      path <<- getPath(dataName, classificatorName, categoryName)
     },
-    getPath = function(classificatorName, categoryName) {
-      resultPath <- paste('./results', classificatorName, categoryName, sep = '/')
+    getPath = function(dataName, classificatorName, categoryName) {
+      resultPath <- paste(const$resultPath, dataName, classificatorName, categoryName, sep = '/')
     },
     read = function() {
-      results <- getSingleResult(1)
-      for(i in 2:10) {
+      results <- NULL
+      for(i in 1:10) {
         results <- rbind(results, getSingleResult(i))
       }
-      results
+      binaryResults <- BinaryResults(results)
     },
     getSingleResult = function(iteration) {
       result <- read.csv(getIterationResultsPath(iteration))
