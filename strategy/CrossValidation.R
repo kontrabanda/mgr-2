@@ -2,6 +2,7 @@ library(caret)
 source(file="./data/DataBase.R")
 source(file="./strategy/SaveResults.R")
 source(file="./strategy/Classification.R")
+source(file="./logger/SimpleLogger.R")
 
 CrossValidation <- setRefClass(
   Class="CrossValidation",
@@ -22,9 +23,13 @@ CrossValidation <- setRefClass(
       createFolds(1:dataClass$getRowSize(), k = 10, list = FALSE)
     },
     crossValidation = function(sets = 1:10) {
+      logger <- SimpleLogger('CrossValidationOverall')
+      logger$start()
       for(i in sets) {
         crossValidationIteration(i)
       }
+      logger$stop()
+      logger$save(dataClass$name, classification$name)
     },
     crossValidationIteration = function(iteration) {
       for(category in dataClass$getClassificationCategories()) {
