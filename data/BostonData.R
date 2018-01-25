@@ -19,9 +19,17 @@ BostonData <- setRefClass(
       data$lat <- bostonData$Lat
       data$lng <- bostonData$Long
       data$category <- bostonData$OFFENSE_CODE_GROUP
+      data <- removeRareCategories(data)
+      data$category <- gsub('/', '_', data$category)
       data$category <- factor(data$category)
       rawData <<- data
     },
+    removeRareCategories = function(data) {
+      rareCategories = c(
+        'Motor Vehicle Accident Response', 'Larceny', 'Medical Assistance', 'Investigate Person', 'Other', 'Vandalism', 'Drug Violation', 'Simple Assault')
+      data[data$category %in% rareCategories,]
+    },
+    
     getData = function(category) {
       data <- rawData[, c("lat", "lng", "hour", "day", "month", "year")]
       data$label <- as.factor(ifelse(rawData$category==category, 1, 0))
