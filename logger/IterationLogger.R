@@ -6,12 +6,14 @@ IterationLogger <- setRefClass(
     name="character",
     results="data.frame",
     dataName="character",
+    categoryName="character",
     classficatorName="character"
   ),
   methods = list(
-    initialize = function(dataName = '', classficatorName = '') {
-      name <<- 'IterationTime'
+    initialize = function(dataName = '', classficatorName = '', categoryName = '') {
+      name <<- paste(categoryName, 'IterationTime', sep = '_')
       dataName <<- dataName
+      categoryName <<- categoryName
       classficatorName <<- classficatorName
       results <<- data.frame(matrix(NA, nrow = 0, ncol = 3))
       colnames(results) <<- c('start', 'end', 'diff')
@@ -23,7 +25,7 @@ IterationLogger <- setRefClass(
     },
     startPrint = function(i, startTime) {
       startTimeFormat <- format(startTime, usetz = T)
-      cat(sprintf('\nIteration: %s, start time: %s \n', i, startTimeFormat))
+      cat(sprintf('\n %s iteration: %s, start time: %s \n', categoryName, i, startTimeFormat))
     },
     stop = function(i) {
       endTime <- Sys.time()
@@ -36,15 +38,17 @@ IterationLogger <- setRefClass(
     stopPrint = function(i, endTime, diff) {
       endTimeFormat <- format(endTime, usetz = T)
       diffFormat <- format(diff, usetz = T)
-      cat(sprintf('Iteration:  %s, end time: %s \n', i, endTimeFormat))
-      cat(sprintf('Iteration:  %s, diff time: %s \n\n', i, diffFormat))
+      cat(sprintf(' %s iteration:  %s, end time: %s \n', categoryName, i, endTimeFormat))
+      cat(sprintf(' %s iteration:  %s, diff time: %s \n\n', categoryName, i, diffFormat))
     },
     save = function() {
       write.csv(results, file = getSavePath(dataName, classficatorName))
       print(results)
     },
     getSavePath = function(dataName, classficatorName) {
-      filePath <- paste(const$resultPath, dataName, classficatorName, name, sep = '/')
+      filePath <- paste(const$resultPath, dataName, classficatorName, 'logTime', sep = '/')
+      dir.create(filePath)
+      filePath <- paste(filePath, name, sep = '/')
       filePath <- paste(filePath, 'csv', sep = '.')
       filePath
     }
