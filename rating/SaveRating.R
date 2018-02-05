@@ -5,15 +5,15 @@ SaveRating <- setRefClass(
     rocPath="character"
   ),
   methods = list(
-    initialize = function(dataName = NULL, classificatorName = NULL) {
+    initialize = function(methodName = NULL, dataName = NULL, classificatorName = NULL) {
       if(is.null(dataName) || is.null(classificatorName)) return
       
-      ratingPath <- createRatingPath(dataName, classificatorName)
+      ratingPath <- createRatingPath(methodName, dataName, classificatorName)
       aucPath <<- createAucPath(ratingPath)
       rocPath <<- createRocPath(ratingPath)
     },
-    createRatingPath = function(dataName, classificatorName) {
-      path <- paste(const$resultPath, dataName, classificatorName, 'rating', sep = '/')
+    createRatingPath = function(methodName, dataName, classificatorName) {
+      path <- paste(const$resultPath, methodName, dataName, classificatorName, 'rating', sep = '/')
       dir.create(path)
       path
     },

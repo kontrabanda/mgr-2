@@ -11,11 +11,11 @@ BinaryRating <- setRefClass(
     classificationName="character"
   ),
   methods = list(
-    initialize = function(dataClass = NULL, ClassificationModel = NULL) {
+    initialize = function(methodName, dataClass = NULL, ClassificationModel = NULL) {
       dataClass <<- dataClass
       classificationModel <- ClassificationModel()
       classificationName <<- classificationModel$name
-      saveRating <<- SaveRating(dataClass$name, classificationName)
+      saveRating <<- SaveRating(methodName, dataClass$name, classificationName)
       aucs <<- createAucs()
     },
     createAucs = function() {

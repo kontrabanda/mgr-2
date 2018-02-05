@@ -18,7 +18,7 @@ Classification <- setRefClass(
       classficationModel <- ClassificationModel()
       classficationModel$trainModel(trainData)
       results <- classficationModel$predictLabels(testData)
-      results
+      data.frame(results)
     }
   )
 )

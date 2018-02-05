@@ -6,11 +6,13 @@ SaveResults <- setRefClass(
     mainPath="character"
   ),
   methods = list(
-    initialize = function(dataName = '', classificatorName = '') {
-      mainPath <<- createMainPath(dataName, classificatorName)
+    initialize = function(methodName = '', dataName = '', classificatorName = '') {
+      mainPath <<- createMainPath(methodName, dataName, classificatorName)
     },
-    createMainPath = function(dataName, classificatorName) {
+    createMainPath = function(methodName, dataName, classificatorName) {
       path <- const$resultPath
+      dir.create(path)
+      path <- paste(path, methodName, sep = '/')
       dir.create(path)
       path <- paste(path, dataName, sep = '/')
       dir.create(path)

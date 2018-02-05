@@ -14,11 +14,11 @@ CrossValidation <- setRefClass(
     folds="integer"
   ),
   methods = list(
-    initialize = function(dataClass, ClassificationModel) {
+    initialize = function(methodName, dataClass, ClassificationModel) {
       set.seed(123)
       dataClass <<- dataClass
       classification <<- Classification(ClassificationModel, dataClass$name)
-      saveResults <<- SaveResults(dataClass$name, classification$name)
+      saveResults <<- SaveResults(methodName, dataClass$name, classification$name)
       folds <<- setFolds()
     },
     setFolds = function() {
@@ -33,7 +33,7 @@ CrossValidation <- setRefClass(
       logger$stop()
     },
     crossValidationCategory = function(category, sets = 1:10) {
-      iterationLogger <- IterationLogger(dataClass$name, classification$name, category)
+      iterationLogger <- IterationLogger(dataClass$name, classification$name, as.character(category))
       for(i in sets) {
         iterationLogger$start(i)
         singleCategoryIteration(category, i)
@@ -45,9 +45,7 @@ CrossValidation <- setRefClass(
       trainData <- dataClass$getData(category)[folds != iteration, ]
       testData <- dataClass$getTestData()[folds == iteration, ]
       results <- classification$classify(trainData, testData, iteration)
-      
-      data <- cbind(testData, results, label=dataClass$getData(category)[folds == iteration, ]$label)
-      
+      data <- cbind(testData, '0'=results$X0, '1'=results$X1, label=dataClass$getData(category)[folds == iteration, ]$label)
       saveResults$save(category, iteration, data)
     }
   )
