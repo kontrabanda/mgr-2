@@ -8,6 +8,7 @@ BinaryRating <- setRefClass(
     dataClass="DataBase",
     aucs="data.frame",
     saveRating="SaveRating",
+    methodName="character",
     classificationName="character"
   ),
   methods = list(
@@ -15,6 +16,7 @@ BinaryRating <- setRefClass(
       dataClass <<- dataClass
       classificationModel <- ClassificationModel()
       classificationName <<- classificationModel$name
+      methodName <<- methodName
       saveRating <<- SaveRating(methodName, dataClass$name, classificationName)
       aucs <<- createAucs()
     },
@@ -32,7 +34,7 @@ BinaryRating <- setRefClass(
       saveRating$saveAuc(getAucSummary())
     },
     computeRatingForCategory = function(category) {
-      readResults <- ReadResults(dataClass$name, classificationName, category)
+      readResults <- ReadResults(methodName, dataClass$name, classificationName, category)
       data <- readResults$read()
       pr <- prediction(data$getProbabilites(), data$getLabel())
       

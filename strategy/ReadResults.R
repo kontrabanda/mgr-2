@@ -6,11 +6,11 @@ ReadResults <- setRefClass(
     path="character"
   ),
   methods = list(
-    initialize = function(dataName = '', classificatorName = '', categoryName = '') {
-      path <<- getPath(dataName, classificatorName, categoryName)
+    initialize = function(methodName = '', dataName = '', classificatorName = '', categoryName = '') {
+      path <<- getPath(methodName, dataName, classificatorName, categoryName)
     },
-    getPath = function(dataName, classificatorName, categoryName) {
-      resultPath <- paste(const$resultPath, dataName, classificatorName, categoryName, sep = '/')
+    getPath = function(methodName, dataName, classificatorName, categoryName) {
+      resultPath <- paste(const$resultPath, methodName, dataName, classificatorName, categoryName, sep = '/')
     },
     read = function() {
       results <- NULL
