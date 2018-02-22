@@ -5,13 +5,15 @@ IterationLogger <- setRefClass(
   fields=list(
     name="character",
     results="data.frame",
+    methodName="character",
     dataName="character",
     categoryName="character",
     classficatorName="character"
   ),
   methods = list(
-    initialize = function(dataName = '', classficatorName = '', categoryName = '') {
+    initialize = function(methodName = '', dataName = '', classficatorName = '', categoryName = '') {
       name <<- paste(categoryName, 'IterationTime', sep = '_')
+      methodName <<- methodName
       dataName <<- dataName
       categoryName <<- categoryName
       classficatorName <<- classficatorName
@@ -46,7 +48,8 @@ IterationLogger <- setRefClass(
       print(results)
     },
     getSavePath = function(dataName, classficatorName) {
-      filePath <- paste(const$resultPath, dataName, classficatorName, 'logTime', sep = '/')
+      filePath <- paste(const$resultPath, methodName, dataName, classficatorName, 'logTime', sep = '/')
+      print(filePath)
       dir.create(filePath)
       filePath <- paste(filePath, name, sep = '/')
       filePath <- paste(filePath, 'csv', sep = '.')

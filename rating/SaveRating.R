@@ -6,11 +6,11 @@ SaveRating <- setRefClass(
   ),
   methods = list(
     initialize = function(methodName = NULL, dataName = NULL, classificatorName = NULL) {
-      if(is.null(dataName) || is.null(classificatorName)) return
-      
-      ratingPath <- createRatingPath(methodName, dataName, classificatorName)
-      aucPath <<- createAucPath(ratingPath)
-      rocPath <<- createRocPath(ratingPath)
+      if(!is.null(methodName) && !is.null(dataName) && !is.null(classificatorName)) {
+        ratingPath <- createRatingPath(methodName, dataName, classificatorName)
+        aucPath <<- createAucPath(ratingPath)
+        rocPath <<- createRocPath(ratingPath)
+      }
     },
     createRatingPath = function(methodName, dataName, classificatorName) {
       path <- paste(const$resultPath, methodName, dataName, classificatorName, 'rating', sep = '/')

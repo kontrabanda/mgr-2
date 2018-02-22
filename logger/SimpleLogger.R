@@ -4,6 +4,7 @@ SimpleLogger <- setRefClass(
   Class="SimpleLogger",
   fields=list(
     name="character",
+    methodName="character",
     dataName="character",
     classficatorName="character",
     startTime="POSIXct",
@@ -11,7 +12,8 @@ SimpleLogger <- setRefClass(
     diff="difftime"
   ),
   methods = list(
-    initialize = function(dataName = '', classficatorName = '') {
+    initialize = function(methodName = '', dataName = '', classficatorName = '') {
+      methodName <<- methodName
       name <<- 'Overall'
       dataName <<- dataName
       classficatorName <<- classficatorName
@@ -40,7 +42,7 @@ SimpleLogger <- setRefClass(
       write.csv(getSaveData(), file = getSavePath())
     },
     getSavePath = function() {
-      filePath <- paste(const$resultPath, dataName, classficatorName, name, sep = '/')
+      filePath <- paste(const$resultPath, methodName, dataName, classficatorName, name, sep = '/')
       filePath <- paste(filePath, 'csv', sep = '.')
       filePath
     },

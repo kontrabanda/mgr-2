@@ -7,5 +7,6 @@ source(file="./model/RandomForestModel.R")
 source(file="./model/SVMModel.R")
 
 source(file="./strategy/CrossValidation.R")
+source(file="./strategy/TimeCrossValidation.R")
 source(file="./rating/BinaryRating.R")
 

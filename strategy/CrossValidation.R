@@ -11,12 +11,14 @@ CrossValidation <- setRefClass(
     classification="Classification",
     saveResults="SaveResults",
     dataClass="DataBase",
-    folds="integer"
+    folds="integer",
+    methodName="character"
   ),
   methods = list(
     initialize = function(methodName, dataClass, ClassificationModel) {
       set.seed(123)
       dataClass <<- dataClass
+      methodName <<- methodName
       classification <<- Classification(ClassificationModel, dataClass$name)
       saveResults <<- SaveResults(methodName, dataClass$name, classification$name)
       folds <<- setFolds()
@@ -25,7 +27,7 @@ CrossValidation <- setRefClass(
       createFolds(1:dataClass$getRowSize(), k = 10, list = FALSE)
     },
     crossValidation = function() {
-      logger <- SimpleLogger(dataClass$name, classification$name)
+      logger <- SimpleLogger(methodName, dataClass$name, classification$name)
       logger$start()
       for(category in dataClass$getClassificationCategories()) {
         crossValidationCategory(category)
@@ -33,7 +35,7 @@ CrossValidation <- setRefClass(
       logger$stop()
     },
     crossValidationCategory = function(category, sets = 1:10) {
-      iterationLogger <- IterationLogger(dataClass$name, classification$name, as.character(category))
+      iterationLogger <- IterationLogger(methodName, dataClass$name, classification$name, as.character(category))
       for(i in sets) {
         iterationLogger$start(i)
         singleCategoryIteration(category, i)

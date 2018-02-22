@@ -13,7 +13,7 @@ projection(crimes) = projection(city)
 poiShape <- shapefile("../data/dodatkowe/poi/osm/dorset/dorset-latest-free.shp/gis.osm_pois_free_1.shp")
 churchesShape <- shapefile("../data/dodatkowe/poi/osm/dorset/dorset-latest-free.shp/gis.osm_pofw_free_1.shp")
 
-source('./scripts/poi/osmUtil.R')
+source('./scripts/dodatkowe/poi/osmUtil.R')
 
 ## DISTANCE
 result <- computeDistance()
@@ -38,18 +38,18 @@ pointsDensity <- pointsDensity[, c('Longitude', 'Latitude')]
 rm(result)
 r <- 100
 result <- computeDensity()
-filePath <- paste("../data/results/bournemouth_poi_dens_", r, ".csv", sep = '')
+filePath <- paste("../data/dodatkowe/results/bournemouth_poi_dens_", r, ".csv", sep = '')
 write.csv(result, file = filePath)
 
 rm(result)
 r <- 200
 result <- computeDensity()
-filePath <- paste("../data/results/bournemouth_poi_dens_", r, ".csv", sep = '')
+filePath <- paste("../data/dodatkowe/results/bournemouth_poi_dens_", r, ".csv", sep = '')
 write.csv(result, file = filePath)
 
 rm(result)
 r <- 500
 result <- computeDensity()
-filePath <- paste("../data/results/bournemouth_poi_dens_", r, ".csv", sep = '')
+filePath <- paste("../data/dodatkowe/results/bournemouth_poi_dens_", r, ".csv", sep = '')
 write.csv(result, file = filePath)
 
