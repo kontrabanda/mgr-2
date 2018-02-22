@@ -6,7 +6,7 @@ data <- bialystokData$rawData
 
 ##################
 
-monthInterval <- 6
+monthInterval <- 3
 
 date <- data.frame(month = as.numeric(as.character(data$month)), year = as.numeric(as.character(data$year)))
 
@@ -30,15 +30,15 @@ cuttingPoints <- data.frame(year=years, month=months)
 cuttingPoints <- cuttingPoints[cuttingPoints$year > 2010, ]
 ################
 #wejściowy
-currIndex <- 2
+currIndex <- 12
 
 currPoint <- cuttingPoints[currIndex, ]
 nextPoint <- cuttingPoints[currIndex + 1, ]
 
-trainIndexes <- date$year < currPoint$year | (date$year == currPoint$year & date$month < currPoint$month)
+trainIndexes <- date$year < currPoint$year | (date$year == currPoint$year & date$month <= currPoint$month)
 
 testIndexes <- (date$year > currPoint$year | (date$year == currPoint$year & date$month > currPoint$month)) &
-               (date$year < nextPoint$year | (date$year == nextPoint$year & date$month < nextPoint$month))
+               (date$year < nextPoint$year | (date$year == nextPoint$year & date$month <= nextPoint$month))
 
 #testIndexes <- (date$year >= currPoint$year & date$year <= nextPoint$year) & (date$month >= currPoint$month & date$month <= nextPoint$month)
 sum(trainIndexes)

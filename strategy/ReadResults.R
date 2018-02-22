@@ -14,19 +14,17 @@ ReadResults <- setRefClass(
     },
     read = function() {
       results <- NULL
-      for(i in 1:10) {
-        results <- rbind(results, getSingleResult(i))
+      filesList <- list.files(path=readResults$path, pattern="*.csv")
+      for(fileName in filesList) {
+        results <- rbind(results, getSingleResult(fileName))
       }
+      
       binaryResults <- BinaryResults(results)
     },
-    getSingleResult = function(iteration) {
-      result <- read.csv(getIterationResultsPath(iteration))
+    getSingleResult = function(fileName) {
+      resultPath <- paste(path, fileName, sep = '/')
+      result <- read.csv(file = resultPath)
       result
-    },
-    getIterationResultsPath = function(iteration) {
-      resultPath <- paste(path, iteration, sep = '/')
-      resultPath <- paste(resultPath, 'csv', sep = '.')
-      resultPath
     }
   )
 )

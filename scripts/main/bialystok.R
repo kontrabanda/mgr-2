@@ -4,9 +4,20 @@ source(file="./data/BialystokPOIDistData.R")
 bialystokData <- BialystokPOIDistData()
 methodName <- 'time-cross-validation'
 
-crossValidation <- TimeCrossValidation(methodName, bialystokData, NaiveBayesModel)
+crossValidation <- TimeCrossValidation(methodName, bialystokData, NaiveBayesModel, monthInterval = 3, fromYear = 2010)
 crossValidation$crossValidation()
 
+readResults <- ReadResults(methodName, bialystokData$name, 'naiveBayes', 'CHU')
+results <- readResults$read()
+
+filesList <- list.files(path=readResults$path, pattern="*.csv")
+filesData <- lapply(filesList, function(fileName) { read.csv(file = paste(readResults$path, fileName, sep = '/')) })
+
+results <- NULL
+
+for(fileName in filesList) {
+  result <- rbind(result, read.csv(file = paste(readResults$path, fileName, sep = '/')))
+}
 
 ### Logistic Regression
 crossValidation <- TimeCrossValidation(methodName, bialystokData, LogisticRegressionModel)
