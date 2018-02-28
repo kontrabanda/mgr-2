@@ -7,6 +7,7 @@ city <- spTransform(city, CRS("+init=epsg:4326"))
 city <- aggregate(city)
 
 crimes <- read.csv("../data/dodatkowe/gb/crimes/crime_only_bournemouth.csv")
+crimesDf <- crimes
 coordinates(crimes) =~ Longitude+Latitude
 projection(crimes) = projection(city)
 
@@ -17,7 +18,9 @@ source('./scripts/dodatkowe/poi/osmUtil.R')
 
 ## DISTANCE
 result <- computeDistance()
-write.csv(result, file = "../data/results/bournemouth_poi_dist.csv")
+result <- result[, categories]
+result <- cbind(crimesDf, result)
+write.csv(result, file = "../data/dodatkowe/results/bournemouth_poi_dist.csv")
 
 ## DENSITY
 drawCircleAroundPoint <- function(point, radius) {

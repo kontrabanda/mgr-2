@@ -11,7 +11,7 @@ BialystokPOIDistData <- setRefClass(
   methods = list(
     initialize = function() {
       name <<- "bialystok"
-      crimeBialystokDF <- read.csv(const$bialystokDataPath, sep = ",")
+      crimeBialystokDF <- read.csv(const$bialystokPOIPath)
       crimeBialystokDF$DATA <- as.Date(crimeBialystokDF$DATA, "%y/%m/%d")
       
       data <- setNames(data.frame(matrix(ncol = 6, nrow = nrow(crimeBialystokDF))), c("lat", "lng", "day", "month", "year", "category"))
@@ -21,10 +21,7 @@ BialystokPOIDistData <- setRefClass(
       data$lat <- crimeBialystokDF$LAT
       data$lng <- crimeBialystokDF$LNG
       data$category <- crimeBialystokDF$KAT
-      
-      distPOIBialystok <- read.csv(const$bialystokPOIPath)
-      distPOIBialystok <- distPOIBialystok[, const$poiCategories]
-      data[const$poiCategories] <- distPOIBialystok
+      data[, const$poiCategories] <- crimeBialystokDF[, const$poiCategories]
       categories <<- as.character(unique(crimeBialystokDF$KAT))
       makeCategoryList <- function(arg) {
         list(unique(arg))

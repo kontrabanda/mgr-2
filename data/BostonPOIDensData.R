@@ -11,7 +11,7 @@ BostonPOIDensData <- setRefClass(
   methods = list(
     initialize = function(rname) {
       name <<- "boston"
-      bostonData <- read.csv(file = const$bostonDataPath)
+      bostonData <- read.csv(const$bostonPOIDensPaths[, rname])
       data <- setNames(data.frame(matrix(ncol = 7, nrow = nrow(bostonData))), c("lat", "lng", "hour", "day", "month", "year", "category"))
       
       data$hour <- bostonData$HOUR
@@ -24,11 +24,7 @@ BostonPOIDensData <- setRefClass(
       data <- removeRareCategories(data)
       data$category <- gsub('/', '_', data$category)
       data$category <- factor(data$category)
-      
-      distPOI <- read.csv(const$bostonPOIDensPaths[, rname])
-      distPOI <- distPOI[, const$poiCategories]
-      data[const$poiCategories] <- distPOI
-      
+      data[, const$poiCategories] <- bostonData[, const$poiCategories]
       categories <<- as.character(unique(data$category))
       makeCategoryList <- function(arg) {
         list(unique(arg))

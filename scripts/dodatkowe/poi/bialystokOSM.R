@@ -7,6 +7,7 @@ city <- shapefile("../data/dodatkowe/bialystok/bialystok.shp")
 city <- spTransform(city, CRS("+init=epsg:4326"))
 city <- aggregate(city)
 crimes <- read.csv("../data/dodatkowe/Polska/zdarzenia_rsow_bialystok.csv")
+crimesDf <- crimes
 coordinates(crimes) =~ LNG+LAT
 projection(crimes) = projection(city)
 
@@ -17,6 +18,8 @@ source('./scripts/dodatkowe/poi/osmUtil.R')
 
 ## DISTANCE
 result <- computeDistance()
+result <- result[, categories]
+result <- cbind(crimesDf, result)
 write.csv(result, file = "../data/results/bialystok_poi_dist.csv")
 
 ## DENSITY

@@ -7,6 +7,7 @@ city <- spTransform(city, CRS("+init=epsg:4326"))
 city <- aggregate(city)
 
 crimes <- read.csv("../data/dodatkowe/usa/crimes/crime_only_boston.csv")
+crimesDf <- crimes
 coordinates(crimes) =~ Long+Lat
 projection(crimes) = projection(city)
 
@@ -17,6 +18,8 @@ source('./scripts/dodatkowe/poi/osmUtil.R')
 
 ## DISTANCE
 result <- computeDistance()
+result <- result[, categories]
+result <- cbind(crimesDf, result)
 write.csv(result, file = "../data/results/boston_poi_dist.csv")
 
 ## DENSITY

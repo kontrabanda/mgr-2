@@ -76,7 +76,9 @@ TimeCrossValidation <- setRefClass(
       testData <- dataClass$getTestData()[testIndexes, ]
       results <- classification$classify(trainData, testData, iteration)
       data <- cbind(testData, '0'=results$X0, '1'=results$X1, label=dataClass$getData(category)[testIndexes, ]$label)
-      saveResults$save(category, iteration, data)
+      
+      fileName <- paste(cuttingPoints[iteration, 1], cuttingPoints[iteration, 2], sep = '-')
+      saveResults$save(category, fileName, data)
     },
     getTrainIndexes = function(iteration) {
       currPoint <- cuttingPoints[iteration, ]
