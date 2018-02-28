@@ -9,4 +9,5 @@ source(file="./model/SVMModel.R")
 source(file="./strategy/CrossValidation.R")
 source(file="./strategy/TimeCrossValidation.R")
 source(file="./rating/BinaryRating.R")
+source(file="./rating/BinaryIntervalRating.R")
 

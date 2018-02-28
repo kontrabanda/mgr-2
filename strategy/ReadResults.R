@@ -14,12 +14,22 @@ ReadResults <- setRefClass(
     },
     read = function() {
       results <- NULL
-      filesList <- list.files(path=readResults$path, pattern="*.csv")
+      filesList <- list.files(path=path, pattern="*.csv")
       for(fileName in filesList) {
         results <- rbind(results, getSingleResult(fileName))
       }
       
       binaryResults <- BinaryResults(results)
+    },
+    readAsList = function() {
+      results <- list()
+      filesList <- list.files(path=path, pattern="*.csv")
+      
+      for(fileName in filesList) {
+        results[[fileName]] <- BinaryResults(getSingleResult(fileName))
+      }
+      
+      results
     },
     getSingleResult = function(fileName) {
       resultPath <- paste(path, fileName, sep = '/')

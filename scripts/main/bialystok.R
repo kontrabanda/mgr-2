@@ -9,6 +9,17 @@ crossValidation$crossValidation()
 
 readResults <- ReadResults(methodName, bialystokData$name, 'naiveBayes', 'CHU')
 results <- readResults$read()
+results <- readResults$readAsList()
+
+binaryRating <- BinaryRating(methodName, bialystokData, NaiveBayesModel)
+binaryRating$computeRating()
+
+binaryIntervalRating <- BinaryIntervalRating(methodName, bialystokData, NaiveBayesModel)
+binaryIntervalRating$computeRating()
+
+
+
+
 
 filesList <- list.files(path=readResults$path, pattern="*.csv")
 filesData <- lapply(filesList, function(fileName) { read.csv(file = paste(readResults$path, fileName, sep = '/')) })

@@ -2,14 +2,15 @@ SaveRating <- setRefClass(
   Class="SaveRating",
   fields=list(
     aucPath="character",
-    rocPath="character"
+    rocPath="character",
+    ratingPath="character"
   ),
   methods = list(
     initialize = function(methodName = NULL, dataName = NULL, classificatorName = NULL) {
       if(!is.null(methodName) && !is.null(dataName) && !is.null(classificatorName)) {
-        ratingPath <- createRatingPath(methodName, dataName, classificatorName)
-        aucPath <<- createAucPath(ratingPath)
-        rocPath <<- createRocPath(ratingPath)
+        ratingPath <<- createRatingPath(methodName, dataName, classificatorName)
+        aucPath <<- createAucPath()
+        rocPath <<- createRocPath()
       }
     },
     createRatingPath = function(methodName, dataName, classificatorName) {
@@ -17,17 +18,22 @@ SaveRating <- setRefClass(
       dir.create(path)
       path
     },
-    createAucPath = function(ratingPath) {
+    createAucPath = function() {
       path <- paste(ratingPath, 'auc.csv', sep = '/')
       path
     },
-    createRocPath = function(ratingPath) {
+    createRocPath = function() {
       path <- paste(ratingPath, 'ROC', sep = '/')
       dir.create(path)
       path
     },
     saveAuc = function(auc) {
       write.csv(auc, file = aucPath)
+    },
+    saveIntervalAuc = function(auc, name) {
+      path <- paste(ratingPath, name, sep = '/')
+      path <- paste(path, 'csv', sep = '.')
+      write.csv(auc, file = path)
     },
     saveRoc = function(category, roc) {
       fileName <- paste(as.character(category), 'png', sep = '.')
