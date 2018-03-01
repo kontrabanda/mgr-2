@@ -1,17 +1,18 @@
 library(lubridate)
 library(dplyr)
-source(file="./data/DataBase.R")
+source(file="../data/DataBase.R")
 
-BournemouthPOIDensData <- setRefClass(
-  Class="BournemouthPOIDensData",
+BournemouthPOIDistData <- setRefClass(
+  Class="BournemouthPOIDistData",
   fields=list(
     rawData="data.frame",
     categories="character"
   ),
   methods = list(
-    initialize = function(radius) {
+    initialize = function() {
       name <<- "bournemouth"
-      bournemouthData <- read.csv(const$bournemouthPOIDensPaths[, rname])
+      bournemouthData <- read.csv(file = const$bournemouthPOIPath)
+      bournemouthData$Date <- bournemouthData$Month
       data <- setNames(data.frame(matrix(ncol = 5, nrow = nrow(bournemouthData))), c("lat", "lng", "month", "year", "category"))
       
       data$month <- as.factor(substring(bournemouthData$Date, 1, 4))
@@ -24,7 +25,7 @@ BournemouthPOIDensData <- setRefClass(
       makeCategoryList <- function(arg) {
         list(unique(arg))
       }
-      groups <- c(c('lat', 'lng', 'month'), const$poiCategories)
+      groups <- c(c("lat", "lng", "month", "year"), const$poiCategories)
       data <- data %>% group_by(.dots=groups) %>% summarize(category = makeCategoryList(category))
       rawData <<- data
     },

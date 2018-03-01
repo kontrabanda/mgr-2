@@ -1,6 +1,6 @@
 library(lubridate)
 library(dplyr)
-source(file="./data/DataBase.R")
+source(file="../data/DataBase.R")
 
 BournemouthDataWithoutDuplicates <- setRefClass(
   Class="BournemouthDataWithoutDuplicates",

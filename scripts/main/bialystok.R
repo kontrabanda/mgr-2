@@ -1,8 +1,23 @@
 source(file="./util.R")
-source(file="./data/BialystokPOIDistData.R")
+source(file="./data/bialystok/BialystokData.R")
+source(file="./data/bialystok/BialystokDataWithoutDuplicates.R")
+source(file="./data/bialystok/BialystokPOIDistData.R")
+source(file="./data/bialystok/BialystokPOIDensData.R")
 
+bialystokData <- BialystokData()
+bialystokData <- BialystokDataWithoutDuplicates()
 bialystokData <- BialystokPOIDistData()
+bialystokData <- BialystokPOIDensData('r100')
 methodName <- 'time-cross-validation'
+
+trainData <- bialystokData$getData('CHU')
+testData <- bialystokData$getTestData()
+
+
+
+
+
+
 
 crossValidation <- TimeCrossValidation(methodName, bialystokData, NaiveBayesModel, monthInterval = 3, fromYear = 2010)
 crossValidation$crossValidation()

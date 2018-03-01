@@ -1,17 +1,17 @@
 library(lubridate)
 library(dplyr)
-source(file="./data/DataBase.R")
+source(file="../data/DataBase.R")
 
-BostonPOIDistData <- setRefClass(
-  Class="BostonPOIDistData",
+BostonPOIDensData <- setRefClass(
+  Class="BostonPOIDensData",
   fields=list(
     rawData="data.frame",
     categories="character"
   ),
   methods = list(
-    initialize = function() {
+    initialize = function(rname) {
       name <<- "boston"
-      bostonData <- read.csv(file = const$bostonPOIPath)
+      bostonData <- read.csv(const$bostonPOIDensPaths[, rname])
       data <- setNames(data.frame(matrix(ncol = 7, nrow = nrow(bostonData))), c("lat", "lng", "hour", "day", "month", "year", "category"))
       
       data$hour <- bostonData$HOUR
