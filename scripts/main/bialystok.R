@@ -10,41 +10,6 @@ bialystokData <- BialystokPOIDistData()
 bialystokData <- BialystokPOIDensData('r100')
 methodName <- 'time-cross-validation'
 
-trainData <- bialystokData$getData('CHU')
-testData <- bialystokData$getTestData()
-
-
-
-
-
-
-
-crossValidation <- TimeCrossValidation(methodName, bialystokData, NaiveBayesModel, monthInterval = 3, fromYear = 2010)
-crossValidation$crossValidation()
-
-readResults <- ReadResults(methodName, bialystokData$name, 'naiveBayes', 'CHU')
-results <- readResults$read()
-results <- readResults$readAsList()
-
-binaryRating <- BinaryRating(methodName, bialystokData, NaiveBayesModel)
-binaryRating$computeRating()
-
-binaryIntervalRating <- BinaryIntervalRating(methodName, bialystokData, NaiveBayesModel)
-binaryIntervalRating$computeRating()
-
-
-
-
-
-filesList <- list.files(path=readResults$path, pattern="*.csv")
-filesData <- lapply(filesList, function(fileName) { read.csv(file = paste(readResults$path, fileName, sep = '/')) })
-
-results <- NULL
-
-for(fileName in filesList) {
-  result <- rbind(result, read.csv(file = paste(readResults$path, fileName, sep = '/')))
-}
-
 ### Logistic Regression
 crossValidation <- TimeCrossValidation(methodName, bialystokData, LogisticRegressionModel)
 crossValidation$crossValidation()

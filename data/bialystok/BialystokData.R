@@ -18,6 +18,7 @@ BialystokData <- setRefClass(
     },
     extractData = function() {
       data <- readData()
+      categories <<- as.character(unique(data$KAT))
       rawData <<- parseData(data)
     },
     readData = function() {

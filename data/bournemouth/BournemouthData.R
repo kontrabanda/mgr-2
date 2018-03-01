@@ -1,31 +1,46 @@
 library(lubridate)
-source(file="../data/DataBase.R")
+source(file="./data/DataBase.R")
 
 BournemouthData <- setRefClass(
   Class="BournemouthData",
   fields=list(
-    rawData="data.frame"
+    rawData="data.frame",
+    categories="character",
+    allColnames="character",
+    propertiesColnames="character"
   ),
   methods = list(
     initialize = function() {
       name <<- "bournemouth"
-      bournemouthData <- read.csv(file = const$bournemouthDataPath)
-      data <- setNames(data.frame(matrix(ncol = 5, nrow = nrow(bournemouthData))), c("lat", "lng", "month", "year", "category"))
-      
-      data$month <- as.factor(substring(bournemouthData$Date, 1, 4))
-      data$year <- as.factor(substring(bournemouthData$Date, 6, 7))
-      data$lat <- bournemouthData$Latitude
-      data$lng <- bournemouthData$Longitude
-      data$category <- bournemouthData$Crime.type
-      rawData <<- data
+      allColnames <<- c("lat", "lng", "month", "year", "category")
+      propertiesColnames <<- c("lat", "lng", "month", "year")
+      extractData()
+    },
+    extractData = function() {
+      data <- readData()
+      categories <<- as.character(unique(data$Crime.type))
+      rawData <<- parseData(data)
+    },
+    readData = function() {
+      read.csv(file = const$bournemouthDataPath)
+    },
+    parseData = function(inputData) {
+      inputData$Date <- inputData$Month
+      data <- setNames(data.frame(matrix(ncol = length(allColnames), nrow = nrow(inputData))), allColnames)
+      data$year <- as.factor(substring(inputData$Date, 1, 4))
+      data$month <- as.factor(substring(inputData$Date, 6, 7))
+      data$lat <- inputData$Latitude
+      data$lng <- inputData$Longitude
+      data$category <- inputData$Crime.type
+      data
     },
     getData = function(category) {
-      data <- rawData[, c("lat", "lng", "month", "year")]
+      data <- rawData[, propertiesColnames]
       data$label <- as.factor(ifelse(rawData$category==category, 1, 0))
       data
     },
     getTestData = function() {
-      data <- rawData[, c("lat", "lng", "month", "year")]
+      data <- rawData[, propertiesColnames]
       data
     },
     getClassificationCategories = function() {

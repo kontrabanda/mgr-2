@@ -18,7 +18,7 @@ BialystokDataWithoutDuplicates <- setRefClass(
         list(unique(arg))
       }
       data <- data %>% group_by(lat, lng, day, month, year) %>% summarize(category = makeCategoryList(category))
-      rawData <<- data
+      data
     },
     getData = function(category) {
       data <- rawData[, propertiesColnames]

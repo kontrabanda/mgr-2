@@ -1,49 +1,38 @@
 library(lubridate)
 library(dplyr)
-source(file="../data/DataBase.R")
+source(file="./data/bournemouth/BournemouthData.R")
 
 BournemouthPOIDistData <- setRefClass(
   Class="BournemouthPOIDistData",
-  fields=list(
-    rawData="data.frame",
-    categories="character"
-  ),
+  fields=list(),
   methods = list(
     initialize = function() {
       name <<- "bournemouth"
-      bournemouthData <- read.csv(file = const$bournemouthPOIPath)
-      bournemouthData$Date <- bournemouthData$Month
-      data <- setNames(data.frame(matrix(ncol = 5, nrow = nrow(bournemouthData))), c("lat", "lng", "month", "year", "category"))
-      
-      data$month <- as.factor(substring(bournemouthData$Date, 1, 4))
-      data$year <- as.factor(substring(bournemouthData$Date, 6, 7))
-      data$lat <- bournemouthData$Latitude
-      data$lng <- bournemouthData$Longitude
-      data$category <- bournemouthData$Crime.type
-      data[, const$poiCategories] <- bournemouthData[, const$poiCategories]
-      categories <<- as.character(unique(data$category))
+      allColnames <<- c(c("lat", "lng", "month", "year", "category"), const$poiCategories)
+      propertiesColnames <<- c(c("lat", "lng", "month", "year"), const$poiCategories)
+      extractData()
+    },
+    readData = function() {
+      read.csv(file = const$bournemouthPOIPath)
+    },
+    parseData = function(inputData) {
+      data <- callSuper(inputData)
+      data[, const$poiCategories] <- inputData[, const$poiCategories]
       makeCategoryList <- function(arg) {
         list(unique(arg))
       }
-      groups <- c(c("lat", "lng", "month", "year"), const$poiCategories)
-      data <- data %>% group_by(.dots=groups) %>% summarize(category = makeCategoryList(category))
-      rawData <<- data
-    },
-    getData = function(category) {
-      columns <-  c(c("lat", "lng", "month", "year"), const$poiCategories)
-      data <- rawData[, columns]
-      label <- sapply(rawData$category, function(x) category %in% x)
-      data$label <- as.factor(ifelse(label, 1, 0))
+      data <- data %>% group_by(.dots=propertiesColnames) %>% summarize(category = makeCategoryList(category))
       data
     },
-    getTestData = function() {
-      columns <-  c(c("lat", "lng", "month", "year"), const$poiCategories)
-      data <- rawData[, columns]
+    getData = function(category) {
+      data <- rawData[, propertiesColnames]
+      label <- sapply(rawData$category, function(x) category %in% x)
+      data$label <- as.factor(ifelse(label, 1, 0))
       data
     },
     getClassificationCategories = function() {
       categories
     }
   ),
-  contains=c("DataBase")
+  contains=c("BournemouthData")
 )

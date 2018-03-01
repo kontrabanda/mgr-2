@@ -22,7 +22,7 @@ BialystokPOIDistData <- setRefClass(
         list(unique(arg))
       }
       data <- data %>% group_by(.dots=propertiesColnames) %>% summarize(category = makeCategoryList(category))
-      rawData <<- data
+      data
     },
     getData = function(category) {
       data <- rawData[, propertiesColnames]

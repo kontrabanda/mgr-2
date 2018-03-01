@@ -1,6 +1,6 @@
 library(lubridate)
 library(dplyr)
-source(file="../data/DataBase.R")
+source(file="./data/bournemouth/BournemouthData.R")
 
 BournemouthDataWithoutDuplicates <- setRefClass(
   Class="BournemouthDataWithoutDuplicates",
@@ -11,34 +11,27 @@ BournemouthDataWithoutDuplicates <- setRefClass(
   methods = list(
     initialize = function() {
       name <<- "bournemouth"
-      bournemouthData <- read.csv(file = const$bournemouthDataPath)
-      data <- setNames(data.frame(matrix(ncol = 5, nrow = nrow(bournemouthData))), c("lat", "lng", "month", "year", "category"))
-      
-      data$month <- as.factor(substring(bournemouthData$Date, 1, 4))
-      data$year <- as.factor(substring(bournemouthData$Date, 6, 7))
-      data$lat <- bournemouthData$Latitude
-      data$lng <- bournemouthData$Longitude
-      data$category <- bournemouthData$Crime.type
-      categories <<- as.character(unique(data$category))
+      allColnames <<- c("lat", "lng", "month", "year", "category")
+      propertiesColnames <<- c("lat", "lng", "month", "year")
+      extractData()
+    },
+    parseData = function(inputData) {
+      data <- callSuper(inputData)
       makeCategoryList <- function(arg) {
         list(unique(arg))
       }
-      data <- data %>% group_by(lat, lng, month) %>% summarize(category = makeCategoryList(category))
-      rawData <<- data
-    },
-    getData = function(category) {
-      data <- rawData[, c("lat", "lng", "month", "year")]
-      label <- sapply(rawData$category, function(x) category %in% x)
-      data$label <- as.factor(ifelse(label, 1, 0))
+      data <- data %>% group_by(lat, lng, month, year) %>% summarize(category = makeCategoryList(category))
       data
     },
-    getTestData = function() {
-      data <- rawData[, c("lat", "lng", "month", "year")]
+    getData = function(category) {
+      data <- rawData[, propertiesColnames]
+      label <- sapply(rawData$category, function(x) category %in% x)
+      data$label <- as.factor(ifelse(label, 1, 0))
       data
     },
     getClassificationCategories = function() {
       categories
     }
   ),
-  contains=c("DataBase")
+  contains=c("BournemouthData")
 )
