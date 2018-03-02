@@ -10,6 +10,9 @@ bialystokData <- BialystokPOIDistData()
 bialystokData <- BialystokPOIDensData('r100')
 methodName <- 'time-cross-validation'
 
+
+
+
 ### Logistic Regression
 crossValidation <- TimeCrossValidation(methodName, bialystokData, LogisticRegressionModel)
 crossValidation$crossValidation()

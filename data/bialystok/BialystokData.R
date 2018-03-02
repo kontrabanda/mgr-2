@@ -28,7 +28,7 @@ BialystokData <- setRefClass(
       inputData$DATA <- as.Date(inputData$DATA, "%y/%m/%d")
       data <- setNames(data.frame(matrix(ncol = length(allColnames), nrow = nrow(inputData))), allColnames)
       data$month <- as.factor(month(as.Date(inputData$DATA, "%y/%m/%d")))
-      data$day <- as.factor(day(as.Date(inputData$DATA, "%y/%m/%d")))
+      data$day <- as.factor(weekdays(as.Date(inputData$DATA, "%y/%m/%d")))
       data$year <- as.factor(year(as.Date(inputData$DATA, "%y/%m/%d")))
       data$lat <- inputData$LAT
       data$lng <- inputData$LNG
