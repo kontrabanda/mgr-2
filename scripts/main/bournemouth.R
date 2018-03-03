@@ -1,6 +1,8 @@
 library(methods) # for Rscript
 
-source(file="./util.R")
+#source(file="./util.R")
+source(file="./model/NaiveBayesModel.R")
+
 source(file="./data/bournemouth/BournemouthData.R")
 source(file="./data/bournemouth/BournemouthDataWithoutDuplicates.R")
 source(file="./data/bournemouth/BournemouthPOIDistData.R")
