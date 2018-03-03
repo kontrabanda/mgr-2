@@ -6,14 +6,10 @@ source(file="./data/bournemouth/BournemouthPOIDensData.R")
 
 methodName <- 'time-cross-validation'
 
-data <- BournemouthData()
-data <- BournemouthDataWithoutDuplicates()
+#data <- BournemouthData()
+#data <- BournemouthDataWithoutDuplicates()
 data <- BournemouthPOIDistData()
-data <- BournemouthPOIDensData('r100')
-
-trainData <- data$getData('Anti-social behaviour')
-testData <- data$getTestData()
-
+#data <- BournemouthPOIDensData('r100')
 
 crossValidation <- TimeCrossValidation(methodName, data, NaiveBayesModel)
 crossValidation$crossValidation()
