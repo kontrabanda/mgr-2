@@ -1,5 +1,19 @@
 source(file="./const.R")
 
+source(file="./const.R")
+
+source(file="./data/bialystok/BialystokDataWithoutDuplicates.R")
+source(file="./data/bialystok/BialystokPOIDistData.R")
+source(file="./data/bialystok/BialystokPOIDensData.R")
+
+source(file="./data/bournemouth/BournemouthDataWithoutDuplicates.R")
+source(file="./data/bournemouth/BournemouthPOIDistData.R")
+source(file="./data/bournemouth/BournemouthPOIDensData.R")
+
+source(file="./data/boston/BostonDataWithoutDuplicates.R")
+source(file="./data/boston/BostonPOIDistData.R")
+source(file="./data/boston/BostonPOIDensData.R")
+
 source(file="./model/LogisticRegressionModel.R")
 source(file="./model/KNNModel.R")
 source(file="./model/NaiveBayesModel.R")
