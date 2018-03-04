@@ -31,7 +31,9 @@ BinaryRating <- setRefClass(
         computeRatingForCategory(category)
       }
       
-      saveRating$saveAuc(getAucSummary())
+      aucSummary <- getAucSummary()
+      saveRating$saveAuc(aucSummary)
+      aucSummary
     },
     computeRatingForCategory = function(category) {
       readResults <- ReadResults(methodName, dataClass$name, classificationName, category)

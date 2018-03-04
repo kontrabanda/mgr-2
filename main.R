@@ -10,8 +10,8 @@ experimentName <- args[1]
 dataName <- args[2] 
 methodName <- args[3]
 
-monthInterval <- args[4]
-testFromYear <- args[5]
+monthInterval <- as.numeric(args[4])
+testFromYear <- as.numeric(args[5])
 
 ##############################
 
@@ -82,8 +82,13 @@ method <- methodMapping[[methodName]]
 crossValidation <- TimeCrossValidation(experimentName, data(), method, monthInterval = monthInterval, fromYear = testFromYear)
 crossValidation$crossValidation()
 
+print('Computing AUC and ROC...')
+
 binaryRating <- BinaryRating(experimentName, data(), method)
-binaryRating$computeRating()
+ratingResult <- binaryRating$computeRating()
+
+print('AUC')
+print(ratingResult)
 
 
 

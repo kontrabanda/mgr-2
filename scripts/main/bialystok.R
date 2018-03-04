@@ -9,7 +9,7 @@ bialystokData <- BialystokDataWithoutDuplicates()
 bialystokData <- BialystokPOIDistData()
 bialystokData <- BialystokPOIDensData('r100')
 methodName <- 'time-cross-validation'
-
+methodName <- 'test2'
 
 
 
