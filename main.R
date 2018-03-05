@@ -1,4 +1,4 @@
-#install.packages(c('e1071', 'ROCR', 'lubridate', 'dplyr', 'caret', 'kknn'))
+#install.packages(c('e1071', 'ROCR', 'lubridate', 'dplyr', 'caret', 'kknn', 'liquidSVM', 'RandomForest'))
 options(warn=-1)
 
 library(methods) # for Rscript
