@@ -6,11 +6,14 @@ library(ggplot2)
 library(maptools)
 library(spatstat)
 
-bialystok <- shapefile("../data/dodatkowe/bialystok/bialystok.shp")
+print('Computing crimes in Bialystok...')
+print(paste('Start at:', Sys.time(), sep = ' '))
+
+bialystok <- shapefile("../data/additional/boundries/bialystok/bialystok.shp")
 bialystok <- spTransform(bialystok, CRS("+init=epsg:4326"))
 onlyBialystok <- aggregate(bialystok)
 
-crime <- read.csv("../data/dodatkowe/Polska/zdarzenia_rsow.csv", sep = "|")
+crime <- read.csv("../data/additional/crimes/crimes-bialystok-rsow.csv", sep = "|")
 crime <- crime[!is.na(crime$LAT)&!is.na(crime$LNG), ]
 
 # zmiana z , na . w danych (inaczej traktowane są jako string)
@@ -22,4 +25,7 @@ projection(crime) = projection(bialystok)
 
 crimeBialystok <- intersect(crime, onlyBialystok)
 crimeBialystokDF <- data.frame(crimeBialystok)
-write.csv(crimeBialystokDF, file = "../../data/Polska/zdarzenia_rsow_bialystok.csv", sep = "|")
+write.csv(crimeBialystokDF, file = "../data/bialystok/bialystok_crimes.csv", sep = "|")
+
+print(paste('Finish at:', Sys.time(), sep = ' '))
+print('Finish computing.')
