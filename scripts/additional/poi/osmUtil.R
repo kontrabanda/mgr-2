@@ -4,10 +4,8 @@ aeqdGlobal <- "+proj=aeqd +lat_0=0 +lon_0=0 +x_0=0 +y_0=0"
 crimes <- spTransform(crimes, aeqdGlobal)
 city <- spTransform(city, aeqdGlobal)
 poiShape <- spTransform(poiShape, aeqdGlobal)
-churchesShape <- spTransform(churchesShape, aeqdGlobal)
 
 poiCity <- intersect(poiShape, city)
-churchesCity <- intersect(churchesShape, city)
 
 ## CATEGORIES
 shop <- c('convenience', 'doityourself', 'kiosk', 'supermarket', 'car_dealership', 'clothes', 'beverages', 'shoe_shop', 

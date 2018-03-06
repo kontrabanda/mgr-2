@@ -1,3 +1,6 @@
 .Rhistory
 log.txt
 nohup.out
+.save_pid.txt
+.tool_pid.txt
+.main_pid.txt

@@ -25,7 +25,7 @@ projection(crime) = projection(bialystok)
 
 crimeBialystok <- intersect(crime, onlyBialystok)
 crimeBialystokDF <- data.frame(crimeBialystok)
-write.csv(crimeBialystokDF, file = "../data/bialystok/bialystok_crimes.csv", sep = "|")
+write.csv(crimeBialystokDF, file = "../data/bialystok/crimes_bialystok.csv", sep = "|")
 
 print(paste('Finish at:', Sys.time(), sep = ' '))
 print('Finish computing.')
