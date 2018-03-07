@@ -13,5 +13,3 @@ if(cityName == 'bialystok') {
 } else {
   stop('No such dataset!')
 }
-
-

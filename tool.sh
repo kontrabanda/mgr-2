@@ -16,7 +16,7 @@ fi
 
 echo $scriptPath
 
-logFileName="../log/"$1"-"$2".txt"
+logFileName="../log/"$1"_"$2".txt"
 
 echo "Log file in $logFileName"
 
