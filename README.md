@@ -46,5 +46,5 @@ z logami procesu.
 ### Wywołanie skryptu zatrzymujące ostatnie badanie
 + ./stop-tool.sh
 
-
-
+## Dane
+Dane umieszczam w folderze ../data (relatywnie do miejsca umieszczenia skryptów głównych). Każdy zbiór danych powinien znajdować się w oddzielnym folderze z nazwą zbioru (można zmienić w const.R)
