@@ -20,12 +20,50 @@ for(singleYear in years) {
 monthsCount <- length(months)
 yearsCount <- length(years)
 
-crimesPerMonth <- data.frame(year=rep(years, each=monthsCount), month=rep(months, times=yearsCount), crimeCount = NA)
+crimesPerMonth <- data.frame(year=rep(years, each=monthsCount), month=rep(months, times=yearsCount), crimesCount = NA)
 
 for(singleYear in years) {
   for(singleMonth in months) {
-    crimesPerMonth[crimesPerMonth$year == singleYear & crimesPerMonth$month == singleMonth, c('crimeCount')] <- nrow(data[data$year == singleYear & data$month == singleMonth, ])
+    crimesPerMonth[crimesPerMonth$year == singleYear & crimesPerMonth$month == singleMonth, c('crimesCount')] <- nrow(data[data$year == singleYear & data$month == singleMonth, ])
   }
 }
 
+#### summary
 
+## year
+yearMean <- mean(crimesPerYear$crimesCount)
+yearMean
+yearMaxValue <- max(crimesPerYear$crimesCount)
+yearMaxValue
+yearMaxElement <- crimesPerYear[crimesPerYear$crimesCount == yearMaxValue,]
+yearMaxElement
+yearMinValue <- min(crimesPerYear$crimesCount)
+yearMinValue
+yearMinElement <- crimesPerYear[crimesPerYear$crimesCount == yearMinValue, ]
+yearMinElement
+
+topYearsWithCrimes <- crimesPerYear[order(crimesPerYear$crimesCount, decreasing=T), ]
+topYearsWithCrimes
+bottomYearsWithCrimes <- crimesPerYear[order(crimesPerYear$crimesCount, decreasing=F), ]
+bottomYearsWithCrimes
+
+## month
+monthMean <- mean(crimesPerMonth$crimesCount)
+monthMean
+monthMaxValue <- max(crimesPerMonth$crimesCount)
+monthMaxValue
+monthMaxElement <- crimesPerMonth[crimesPerMonth$crimesCount == monthMaxValue,]
+monthMaxElement
+monthMinValue <- min(crimesPerMonth$crimesCount)
+monthMinValue
+monthMinElement <- crimesPerMonth[crimesPerMonth$crimesCount == monthMinValue, ]
+monthMinElement
+
+topMonthsWithCrimes <- crimesPerMonth[order(crimesPerMonth$crimesCount, decreasing=T), ]
+topMonthsWithCrimes[1:50,]
+bottomMonthsWithCrimes <- crimesPerMonth[order(crimesPerMonth$crimesCount, decreasing=F), ]
+bottomMonthsWithCrimes[1:50,]
+
+
+write.csv(file = "../data/additional/analysis/bornemouth_crimes_per_year.csv", x = crimesPerYear)
+write.csv(file = "../data/additional/analysis/bornemouth_crimes_per_month.csv", x = crimesPerMonth)
