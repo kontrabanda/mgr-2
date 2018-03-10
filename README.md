@@ -8,6 +8,9 @@ przerwanie ostatnio uruchomionego procesu.
 Na potrzeby sprawdzenia statusu aktualnego badania w dodatkowym folderze ../log tworzony jest plik tekstowy
 z logami procesu.
 
+Dodane zostały również wersje skryptów odpalające się na konsoli (nie w tle).
+Dzięki temu można szybko podejrzeć bieżące operację (i ewentualne błędy),  jak również szybko zatrzymać proces. Skrypty te mają sufix _cons.
+
 ## Wywołanie narzędzia do przeprowadzania badań
 
 ### Przykładowe wywołanie
