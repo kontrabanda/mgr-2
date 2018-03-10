@@ -6,6 +6,5 @@ logFileName="../log/"$1"_"$2".txt"
 
 echo "Log file in $logFileName"
 
-nohup Rscript main.R $@ > $logFileName 2>&1 &
-
+nohup Rscript ./scripts/main.R $@ > $logFileName 2>&1 &
 echo $! > .main_pid.txt
