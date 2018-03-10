@@ -28,6 +28,26 @@ z logami procesu.
 ### Wywołanie skryptu zatrzymujące ostatnie badanie
 + ./stop-main.sh
 
+## Wywołanie narzędzia do sekwencyjnego uruchomienia wszystkich metod dla danego zbioru danych
+
+### Przykładowe wywołanie
++ ./mainAll.sh test-1 bialystok_norm 6 2010
++ ./mainAll.sh test-2 bournemouth_poi_dist 6 2016
++ ./mainAll.sh test-3 bialystok_poi_dens 3 2010
+
+### Parametry
+1. nazwa badania
+2. nazwa zbioru danych
+3. liczba miesięcy w przedziale cross-validacji
+4. rok do którego dane traktujemy jako zbiorór testowy
+
+### Logowanie
++ ../log 'nazwa-badania'_'nazwa-zbioru-danych'.txt
++ występuje dodatkowe logowanie błędów w poszczególnych metodach (jeżeli jedna się nie powiedzie skrypt przejdzie do kolejnej i zaloguje błąd w ../log/errors.out)
+
+### Wywołanie skryptu zatrzymujące ostatnie badanie
++ ./stop-main.sh
+
 ## Wywołanie narzedzia do przetwarzania danych wejściowych
 
 ### Przykładowe wywołanie
