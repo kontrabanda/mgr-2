@@ -47,6 +47,7 @@ Dzięki temu można szybko podejrzeć bieżące operację (i ewentualne błędy
 ### Logowanie
 + ../log 'nazwa-badania'_'nazwa-zbioru-danych'.txt
 + występuje dodatkowe logowanie błędów w poszczególnych metodach (jeżeli jedna się nie powiedzie skrypt przejdzie do kolejnej i zaloguje błąd w ../log/errors.out)
++ występuje również dodatkowe logowanie postępu (czyszczone przy każdym uruchomieniu) w pliku ../log/progress.out
 
 ### Wywołanie skryptu zatrzymujące ostatnie badanie
 + ./stop-main.sh
