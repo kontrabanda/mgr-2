@@ -6,7 +6,7 @@ library(rgeos)
 city <- shapefile("../data/additional/boundries/bialystok/bialystok.shp")
 city <- spTransform(city, CRS("+init=epsg:4326"))
 city <- aggregate(city)
-crimes <- read.csv("../data/bialystok/bialystok_crimes.csv")
+crimes <- read.csv("../data/bialystok/crimes_bialystok.csv")
 crimesDf <- crimes
 coordinates(crimes) =~ LNG+LAT
 projection(crimes) = projection(city)

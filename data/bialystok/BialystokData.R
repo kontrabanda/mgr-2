@@ -33,7 +33,14 @@ BialystokData <- setRefClass(
       data$lat <- inputData$LAT
       data$lng <- inputData$LNG
       data$category <- inputData$KAT
+      
+      data <- removeIncompeleteData(data)
       data
+    },
+    removeIncompeleteData = function(data) {
+      years <- as.numeric(as.character(data$year))
+      months <- as.numeric(as.character(data$month))
+      data[years >= 2009 & !(years == 2016 & months == 12) & !(years == 2016 & months == 11), ]
     },
     getData = function(category) {
       data <- rawData[, propertiesColnames]

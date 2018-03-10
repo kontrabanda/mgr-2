@@ -21,7 +21,10 @@ BostonPOIDistData <- setRefClass(
       makeCategoryList <- function(arg) {
         list(unique(arg))
       }
-      data <- data %>% group_by(.dots=propertiesColnames) %>% summarize(category = makeCategoryList(category))
+      summWithCategories <- data %>% group_by(lat, lng, day, month, year) %>% summarize(category = makeCategoryList(category))
+      summWithPoi <- data %>% group_by(lat, lng, day, month, year) %>% summarize_at(const$poiCategories, mean)
+      data <- summWithPoi
+      data$category <- summWithCategories$category
       data
     },
     getData = function(category) {
