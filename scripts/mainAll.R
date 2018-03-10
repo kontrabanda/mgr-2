@@ -81,17 +81,22 @@ computeForSingleMethod <- function(method, methodName) {
       binaryRating <- BinaryRating(experimentName, data(), method)
       ratingResult <- binaryRating$computeRating()
       
-      print(paset('AUC for ', methodName, sep = ' '))
+      print(paste('AUC for ', methodName, sep = ' '))
       print(ratingResult)
+      
+      write(paste('Method', methodName, 'finish with SUCCESS'), '../log/progress.out', append=T)
     },
     error = function(cond) {
       message(paste('ERROR in', methodName, sep = ' '))
       message(cond)
       errMsg <- paste(Sys.time(), 'ERROR in', methodName, cond, sep = ' ')
       write(errMsg, '../log/errors.out', append=T)
+      write(paste('Method', methodName, 'finish with ERROR'), '../log/progress.out', append=T)
     }
   )
 }
+
+write('', '../log/progress.out', append=F)
 
 i <- 1
 for(method in methodMapping) {
