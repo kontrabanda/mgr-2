@@ -12,8 +12,8 @@ BournemouthData <- setRefClass(
   methods = list(
     initialize = function() {
       name <<- "bournemouth"
-      allColnames <<- c("lat", "lng", "month", "year", "category")
-      propertiesColnames <<- c("lat", "lng", "month", "year")
+      allColnames <<- c("lat", "lng", "month", "category")
+      propertiesColnames <<- c("lat", "lng", "month")
       extractData()
     },
     extractData = function() {

@@ -8,8 +8,8 @@ BialystokDataWithoutDuplicates <- setRefClass(
   methods = list(
     initialize = function() {
       name <<- "bialystok"
-      allColnames <<- c("lat", "lng", "day", "month", "year", "category")
-      propertiesColnames <<- c("lat", "lng", "day", "month", "year")
+      allColnames <<- c("lat", "lng", "day", "month", "category")
+      propertiesColnames <<- c("lat", "lng", "day", "month")
       extractData()
     },
     parseData = function(inputData) {
@@ -17,6 +17,7 @@ BialystokDataWithoutDuplicates <- setRefClass(
       makeCategoryList <- function(arg) {
         list(unique(arg))
       }
+      # year should stay to get year column for time cross validation points computing
       data <- data %>% group_by(lat, lng, day, month, year) %>% summarize(category = makeCategoryList(category))
       data
     },

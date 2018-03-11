@@ -12,8 +12,8 @@ BialystokData <- setRefClass(
   methods = list(
     initialize = function() {
       name <<- "bialystok"
-      allColnames <<- c("lat", "lng", "day", "month", "year", "category")
-      propertiesColnames <<- c("lat", "lng", "day", "month", "year")
+      allColnames <<- c("lat", "lng", "day", "month", "category")
+      propertiesColnames <<- c("lat", "lng", "day", "month")
       extractData()
     },
     extractData = function() {

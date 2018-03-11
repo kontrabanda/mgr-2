@@ -11,8 +11,8 @@ BournemouthPOIDensData <- setRefClass(
     initialize = function(rname) {
       name <<- "bournemouth"
       rname <<- rname
-      allColnames <<- c(c("lat", "lng", "month", "year", "category"), const$poiCategories)
-      propertiesColnames <<- c(c("lat", "lng", "month", "year"), const$poiCategories)
+      allColnames <<- c(c("lat", "lng", "month", "category"), const$poiCategories)
+      propertiesColnames <<- c(c("lat", "lng", "month"), const$poiCategories)
       extractData()
     },
     readData = function() {

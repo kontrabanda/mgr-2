@@ -8,8 +8,8 @@ BostonPOIDistData <- setRefClass(
   methods = list(
     initialize = function() {
       name <<- "boston"
-      allColnames <<- c(c("lat", "lng", "day", "month", "year", "category"), const$poiCategories)
-      propertiesColnames <<- c(c("lat", "lng", "day", "month", "year"), const$poiCategories)
+      allColnames <<- c(c("lat", "lng", "day", "month", "category"), const$poiCategories)
+      propertiesColnames <<- c(c("lat", "lng", "day", "month"), const$poiCategories)
       extractData()
     },
     readData = function() {

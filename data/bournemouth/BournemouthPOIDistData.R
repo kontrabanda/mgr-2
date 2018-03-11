@@ -8,8 +8,8 @@ BournemouthPOIDistData <- setRefClass(
   methods = list(
     initialize = function() {
       name <<- "bournemouth"
-      allColnames <<- c(c("lat", "lng", "month", "year", "category"), const$poiCategories)
-      propertiesColnames <<- c(c("lat", "lng", "month", "year"), const$poiCategories)
+      allColnames <<- c(c("lat", "lng", "month", "category"), const$poiCategories)
+      propertiesColnames <<- c(c("lat", "lng", "month"), const$poiCategories)
       extractData()
     },
     readData = function() {
@@ -22,7 +22,7 @@ BournemouthPOIDistData <- setRefClass(
         list(unique(arg))
       }
       summWithCategories <- data %>% group_by(lat, lng, month, year) %>% summarize(category = makeCategoryList(category))
-      summWithPoi <- data %>% group_by(lat, lng, month, year) %>% summarize_at(const$poiCategories, mean)
+      summWithPoi <- data %>% group_by(lat, lng, month) %>% summarize_at(const$poiCategories, mean)
       data <- summWithPoi
       data$category <- summWithCategories$category
       data

@@ -8,8 +8,8 @@ BostonDataWithoutDuplicates <- setRefClass(
   methods = list(
     initialize = function() {
       name <<- "boston"
-      allColnames <<- c("lat", "lng", "day", "month", "year", "category")
-      propertiesColnames <<- c("lat", "lng", "day", "month", "year")
+      allColnames <<- c("lat", "lng", "day", "month", "category")
+      propertiesColnames <<- c("lat", "lng", "day", "month")
       extractData()
     },
     parseData = function(inputData) {
@@ -17,7 +17,7 @@ BostonDataWithoutDuplicates <- setRefClass(
       makeCategoryList <- function(arg) {
         list(unique(arg))
       }
-      data <- data %>% group_by(.dots=propertiesColnames) %>% summarize(category = makeCategoryList(category))
+      data <- data %>% group_by(lat, lng, day, month, year) %>% summarize(category = makeCategoryList(category))
       data
     },
     getData = function(category) {
