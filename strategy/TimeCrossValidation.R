@@ -1,6 +1,5 @@
 library(caret)
 source(file="./data/DataBase.R")
-source(file="./strategy/SaveResults.R")
 source(file="./strategy/Classification.R")
 source(file="./logger/SimpleLogger.R")
 source(file="./logger/IterationLogger.R")
@@ -13,20 +12,19 @@ TimeCrossValidation <- setRefClass(
     dataClass="DataBase",
     date="data.frame",
     cuttingPoints="data.frame",
-    methodName="character",
+    experimentName="character",
     monthInterval="numeric",
     fromYear="numeric"
   ),
   methods = list(
-    initialize = function(methodName, dataClass, ClassificationModel, monthInterval = 3, fromYear = 1970) {
+    initialize = function(experimentName, dataClass, ClassificationModel, monthInterval = 3, fromYear = 1970) {
       set.seed(123)
       dataClass <<- dataClass
-      methodName <<- methodName
+      experimentName <<- experimentName
       monthInterval <<- monthInterval
       fromYear <<- fromYear
       
-      classification <<- Classification(ClassificationModel, dataClass$name)
-      saveResults <<- SaveResults(methodName, dataClass$name, classification$name)
+      classification <<- Classification(ClassificationModel, experimentName, dataClass$name)
       data <- dataClass$rawData
       date <<- data.frame(month = as.numeric(as.character(data$month)), year = as.numeric(as.character(data$year)))
       cuttingPoints <<- getCuttingPoints()
@@ -52,7 +50,7 @@ TimeCrossValidation <- setRefClass(
       points
     },
     crossValidation = function() {
-      logger <- SimpleLogger(methodName, dataClass$name, classification$name)
+      logger <- SimpleLogger(experimentName, dataClass$name, classification$name)
       logger$start()
       for(category in dataClass$getClassificationCategories()) {
         crossValidationCategory(category)
@@ -60,7 +58,7 @@ TimeCrossValidation <- setRefClass(
       logger$stop()
     },
     crossValidationCategory = function(category, sets = 1:10) {
-      iterationLogger <- IterationLogger(methodName, dataClass$name, classification$name, as.character(category))
+      iterationLogger <- IterationLogger(experimentName, dataClass$name, classification$name, as.character(category))
       for(i in 1:(nrow(cuttingPoints) - 1)) {
         iterationLogger$start(i)
         singleCategoryIteration(category, i)
@@ -72,13 +70,8 @@ TimeCrossValidation <- setRefClass(
       trainIndexes <- getTrainIndexes(iteration)
       testIndexes <- getTestIndexes(iteration)
       
-      trainData <- dataClass$getData(category)[trainIndexes, ]
-      testData <- dataClass$getTestData()[testIndexes, ]
-      results <- classification$classify(trainData, testData, iteration)
-      data <- cbind(testData, '0'=results$X0, '1'=results$X1, label=dataClass$getData(category)[testIndexes, ]$label)
-      
       fileName <- paste(cuttingPoints[iteration, 1], cuttingPoints[iteration, 2], sep = '-')
-      saveResults$save(category, fileName, data)
+      results <- classification$classify(dataClass, trainIndexes, testIndexes, category, fileName)
     },
     getTrainIndexes = function(iteration) {
       currPoint <- cuttingPoints[iteration, ]

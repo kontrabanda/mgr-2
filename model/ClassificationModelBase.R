@@ -9,6 +9,15 @@ ClassificationModelBase <- setRefClass(
     },
     predictLabels = function(testData) {
       print("ClassificationModelBase: predictLabels")
+    },
+    getAdditionalInformation = function() {
+      NULL
+    },
+    hasPlot = function() {
+      FALSE
+    },
+    getPlot = function() {
+      NULL
     }
   )
 )
