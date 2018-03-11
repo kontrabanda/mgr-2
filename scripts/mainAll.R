@@ -98,6 +98,7 @@ computeForSingleMethod <- function(method, methodName) {
 }
 
 write('', '../log/progress.out', append=F)
+write('', '../log/errors.out', append=F)
 
 i <- 1
 for(method in methodMapping) {
