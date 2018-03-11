@@ -29,7 +29,7 @@ if(is.na(dataName) || !(dataName %in% validDataNames)) {
   stop(message)
 }
 
-validMethodNames <- c('logistic_regression', 'bayes', 'knn', 'random_forest', 'svm')
+validMethodNames <- c('logistic_regression', 'bayes', 'knn', 'random_forest', 'svm', 'decision_tree')
 
 if(is.na(methodName) || !(methodName %in% validMethodNames)) {
   message <- paste('Invalid method name! Was:', methodName, 'should be one of:', paste(validMethodNames, collapse=", "))
@@ -71,7 +71,8 @@ methodMapping <- list(
   bayes = NaiveBayesModel,
   knn = KNNModel,
   random_forest = RandomForestModel,
-  svm = SVMModel
+  svm = SVMModel,
+  decision_tree = DecisionTreeModel
 )
 
 data <- dataMapping[[dataName]]

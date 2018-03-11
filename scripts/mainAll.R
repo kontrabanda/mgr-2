@@ -63,7 +63,8 @@ methodMapping <- list(
   bayes = NaiveBayesModel,
   knn = KNNModel,
   random_forest = RandomForestModel,
-  svm = SVMModel
+  svm = SVMModel,
+  decision_tree = DecisionTreeModel
 )
 
 methodNames <- c('logistic_regression', 'bayes', 'kNN', 'Random Forest', 'SVM')
