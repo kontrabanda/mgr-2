@@ -1,5 +1,5 @@
-source(file = './data/bournemouth/BournemouthDataWithoutDuplicates.R')
 source(file = './const.R')
+source(file = './data/bournemouth/BournemouthDataWithoutDuplicates.R')
 
 dataSource <- BournemouthDataWithoutDuplicates()
 
