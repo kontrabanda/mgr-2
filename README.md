@@ -58,10 +58,11 @@ Dzięki temu można szybko podejrzeć bieżące operację (i ewentualne błędy
 + ./tool.sh poiDist bournemouth
 + ./tool.sh boundries bialystok
 + ./tool.sh poiDens bialystok 100
++ ./tool.sh auc norm-3
 
 ### Parametry
 1. nazwa narzędzia (poiDist, poiDens, boundries)
-2. nazwa zbioru danych
+2. nazwa zbioru danych/lub nazwa eksperymentu dla auc
 3. długość promienia badania (wykorzystywane tylko w przetwarzaniu POI gęstościowego)
 
 ### Logowanie

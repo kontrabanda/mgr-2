@@ -91,5 +91,7 @@ ratingResult <- binaryRating$computeRating()
 print('AUC')
 print(ratingResult)
 
+##############################
 
+source(file = './scripts/additional/rating/aucForExperiment.R')
 

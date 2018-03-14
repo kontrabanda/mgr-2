@@ -1,8 +1,12 @@
-experimentName <- 'norm-3'
+
+
+
+
 
 resultsPath <- paste('../results', experimentName, sep = '/')
 ratingResultsPath <- paste('../ratings', experimentName, sep = '/')
 
+dir.create('../rating')
 dir.create(ratingResultsPath)
 
 getMethodNameFromPath <- function(path) {
