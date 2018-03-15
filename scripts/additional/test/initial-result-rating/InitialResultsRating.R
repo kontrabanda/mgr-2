@@ -1,5 +1,7 @@
 library(raster)
 library(sp)
+library(lubridate)
+library(dplyr)
 
 source(file = './const.R')
 source(file = './data/bialystok/BialystokDataWithoutDuplicates.R')
@@ -41,4 +43,5 @@ plot(onlyBournemouth)
 plot(bulgrary, col = 'blue', add = T)
 plot(shoplifiting, col = 'red', add = T)
 
-
+bulgraryInMonths <- data.frame(bulgrary) %>% group_by(month) %>% summarize(n = n())
+shopliftingInMonths <- data.frame(shoplifiting) %>% group_by(month) %>% summarize(n = n())

@@ -1,12 +1,7 @@
-
-
-
-
-
 resultsPath <- paste('../results', experimentName, sep = '/')
 ratingResultsPath <- paste('../ratings', experimentName, sep = '/')
 
-dir.create('../rating')
+dir.create('../ratings')
 dir.create(ratingResultsPath)
 
 getMethodNameFromPath <- function(path) {
@@ -29,6 +24,8 @@ getAucsFromPaths <- function(dataSourceAucPaths) {
   }
   
   names(results) <- methodNames
+  namesOrder <- c('category', 'logicRegression', 'naiveBayes', 'kNN', 'DecisionTree', 'randomForest', 'SVM')
+  results <- results[, namesOrder]
   results
 }
 
@@ -61,7 +58,5 @@ dataSourcesDirs <- list.dirs(resultsPath, recursive = F, full.names = T)
 for(singleDir in dataSourcesDirs) {
   computeDataSourceAUC(singleDir)
 }
-
-
 
 
