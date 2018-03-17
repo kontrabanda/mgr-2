@@ -32,7 +32,6 @@ drawCircleAroundPoint <- function(point, radius) {
 pointsDensity <- data.frame(crimes)
 pointsDensity <- pointsDensity[, c('LNG', 'LAT')]
 
-rm(result)
 result <- computeDensity()
 filePath <- paste("../data/bialystok/bialystok_poi_dens_", r, ".csv", sep = '')
 write.csv(result, file = filePath)

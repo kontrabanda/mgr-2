@@ -13,7 +13,7 @@ RandomForestModel <- setRefClass(
       name <<- 'randomForest'
     },
     trainModel = function(trainData) {
-      model <<- randomForest(label ~ ., data = trainData)
+      model <<- randomForest(label ~ ., data = trainData, importance = T)
     },
     predictLabels = function(testData) {
       predict(model, testData, type = 'prob')
@@ -22,7 +22,7 @@ RandomForestModel <- setRefClass(
       TRUE
     },
     getPlot = function() {
-      varImpPlot(model,type=2)
+      varImpPlot(model,type=1)
     },
     getAdditionalInformation = function() {
       varImp(model)

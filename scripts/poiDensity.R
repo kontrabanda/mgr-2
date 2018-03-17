@@ -3,18 +3,41 @@ library(methods) # for Rscript
 args = commandArgs(trailingOnly=TRUE)
 
 cityName <- args[1]
-r <- as.numeric(args[2])
 
-if(is.na(r)) {
-  stop('r not set')
-}
+type <- args[2]
 
-if(cityName == 'bialystok') {
-  source(file = './scripts/additional/poi/bialystokPOIDensity.R')
-} else if(cityName == 'bournemouth') {
-  source(file = './scripts/additional/poi/bournemouthPOIDensity.R')
-} else if(cityName == 'boston') {
-  source(file = './scripts/additional/poi/bostonPOIDensity.R')
+if(type == 'all') {
+  rs <- c(100, 200, 500)
+  #rs <- c(200, 500)
+  
+  for(radius in rs) {
+    r <- radius
+    print(paste('Selected r = ', r, sep = ''))
+    if(cityName == 'bialystok') {
+      source(file = './scripts/additional/poi/bialystokPOIDensity.R')
+    } else if(cityName == 'bournemouth') {
+      source(file = './scripts/additional/poi/bournemouthPOIDensity.R')
+    } else if(cityName == 'boston') {
+      source(file = './scripts/additional/poi/bostonPOIDensity.R')
+    } else {
+      stop('No such dataset!')
+    }
+  }
+  
 } else {
-  stop('No such dataset!')
+  r <- as.numeric(type)
+  
+  if(is.na(r)) {
+    stop('r not set')
+  }
+  
+  if(cityName == 'bialystok') {
+    source(file = './scripts/additional/poi/bialystokPOIDensity.R')
+  } else if(cityName == 'bournemouth') {
+    source(file = './scripts/additional/poi/bournemouthPOIDensity.R')
+  } else if(cityName == 'boston') {
+    source(file = './scripts/additional/poi/bostonPOIDensity.R')
+  } else {
+    stop('No such dataset!')
+  }
 }
