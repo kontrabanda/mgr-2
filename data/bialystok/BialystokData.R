@@ -14,9 +14,8 @@ BialystokData <- setRefClass(
       name <<- "bialystok"
       allColnames <<- c("lat", "lng", "day", "month", "category")
       propertiesColnames <<- c("lat", "lng", "day", "month")
-      extractData()
     },
-    extractData = function() {
+    extractData = function(params = NULL) {
       data <- readData()
       categories <<- as.character(unique(data$KAT))
       rawData <<- parseData(data)

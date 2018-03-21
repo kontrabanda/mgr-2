@@ -8,12 +8,14 @@ BialystokPOIDensData <- setRefClass(
     rname="character"
   ),
   methods = list(
-    initialize = function(rname) {
+    initialize = function() {
       name <<- "bialystok"
-      rname <<- rname
       allColnames <<- c(c("lat", "lng", "day", "month", "category"), const$poiCategories)
       propertiesColnames <<- c(c("lat", "lng", "day", "month"), const$poiCategories)
-      extractData()
+    },
+    extractData = function(params = NULL) {
+      rname <<- paste('r', params$poiRadius, sep = '')
+      callSuper(params)
     },
     readData = function() {
       read.csv(const$bialystokPOIDensPaths[, rname])

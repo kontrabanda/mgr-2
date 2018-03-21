@@ -14,16 +14,12 @@ Dzięki temu można szybko podejrzeć bieżące operację (i ewentualne błędy
 ## Wywołanie narzędzia do przeprowadzania badań
 
 ### Przykładowe wywołanie
-+ ./main.sh test-1 bialystok_norm knn 6 2010
-+ ./main.sh test-2 bournemouth_poi_dist svm 6 2016
-+ ./main.sh test-3 bialystok_poi_dens svm 3 2010
++ ./main.sh test-1 ./params/bialystokParams.R
++ ./main_cons.sh test-1 ./params/bialystokParams.R
 
 ### Parametry
 1. nazwa badania
-2. nazwa zbioru danych
-3. nazwa metody
-4. liczba miesięcy w przedziale cross-validacji
-5. rok do którego dane traktujemy jako zbiorór testowy
+2. ścieżka do skryptu z konfiguracjami
 
 ### Logowanie
 + ../log 'nazwa-badania'_'nazwa-zbioru-danych'.txt
@@ -34,15 +30,15 @@ Dzięki temu można szybko podejrzeć bieżące operację (i ewentualne błędy
 ## Wywołanie narzędzia do sekwencyjnego uruchomienia wszystkich metod dla danego zbioru danych
 
 ### Przykładowe wywołanie
-+ ./mainAll.sh test-1 bialystok_norm 6 2010
-+ ./mainAll.sh test-2 bournemouth_poi_dist 6 2016
-+ ./mainAll.sh test-3 bialystok_poi_dens 3 2010
++ ./mainAll.sh test-1 ./params/bialystokParams.R
++ ./mainAll_cons.sh test-1 ./params/bialystokParams.R
 
 ### Parametry
 1. nazwa badania
-2. nazwa zbioru danych
-3. liczba miesięcy w przedziale cross-validacji
-4. rok do którego dane traktujemy jako zbiorór testowy
+2. ścieżka do skryptu z konfiguracjami
+
+### Skrypt z konfiguracjami
+Jest to skrypt w którym tworzony jest obiekt inputParams <- InputParams(). Obiekt ten zawiera pola z danymi konfiguracyjnymi dla narzędzia.
 
 ### Logowanie
 + ../log 'nazwa-badania'_'nazwa-zbioru-danych'.txt

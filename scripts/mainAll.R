@@ -7,10 +7,7 @@ source(file = './util.R')
 args = commandArgs(trailingOnly=TRUE)
 
 experimentName <- args[1]
-dataName <- args[2] 
-
-monthInterval <- as.numeric(args[3])
-testFromYear <- as.numeric(args[4])
+paramsPath <- args[2]
 
 ##############################
 
@@ -18,29 +15,31 @@ if(is.na(experimentName)) {
   stop('Experiment name not set!')
 }
 
+if(is.na(paramsPath)) {
+  stop('Params path not set!')
+}
+
+source(file = paramsPath)
+
+if(is.na(inputParams)) {
+  stop('Input params not set!!')
+}
+
 validDataNames <- c(
   'bialystok_norm', 'bialystok_poi_dist', 'bialystok_poi_dens',
   'bournemouth_norm', 'bournemouth_poi_dist', 'bournemouth_poi_dens',
   'boston_norm', 'boston_poi_dist', 'boston_poi_dens')
 
-if(is.na(dataName) || !(dataName %in% validDataNames)) {
-  message <- paste('Invalid data name! Was:', dataName, 'should be one of:', paste(validDataNames, collapse=", "))
+if(is.na(inputParams$dataName) || !(inputParams$dataName %in% validDataNames)) {
+  message <- paste('Invalid data name! Was:', inputParams$dataName, 'should be one of:', paste(validDataNames, collapse=", "))
   stop(message)
-}
-
-if(is.na(monthInterval)) {
-  monthInterval <- 3
-}
-
-if(is.na(testFromYear)) {
-  testFromYear <- 1970
 }
 
 print('All method script!')
 print(paste('Experiment name:', experimentName, sep = ' '))
-print(paste('Data name:', dataName, sep = ' '))
-print(paste('Month interval:', monthInterval, sep = ' '))
-print(paste('Test from year:', testFromYear, sep = ' '))
+print(paste('Data name:', inputParams$dataName, sep = ' '))
+print(paste('Month interval:', inputParams$monthInterval, sep = ' '))
+print(paste('Test from year:', inputParams$fromYear, sep = ' '))
 
 ##############################
 
@@ -69,17 +68,19 @@ methodMapping <- list(
 
 methodNames <- c('logistic_regression', 'bayes', 'kNN', 'Random Forest', 'SVM')
 
-data <- dataMapping[[dataName]]
+data <- dataMapping[[inputParams$dataName]]()
+data$extractData(inputParams)
 
 computeForSingleMethod <- function(method, methodName) {
   tryCatch(
     {
-      crossValidation <- TimeCrossValidation(experimentName, data(), method, monthInterval = monthInterval, fromYear = testFromYear)
+      print(paste('Method', methodName, 'start at', Sys.time(), sep = ' '))
+      crossValidation <- TimeCrossValidation(experimentName, data, method, monthInterval = inputParams$monthInterval, fromYear = inputParams$fromYear)
       crossValidation$crossValidation()
       
       print(paste('Computing AUC and ROC for', methodName, sep = ' '))
       
-      binaryRating <- BinaryRating(experimentName, data(), method)
+      binaryRating <- BinaryRating(experimentName, data, method)
       ratingResult <- binaryRating$computeRating()
       
       print(paste('AUC for ', methodName, sep = ' '))

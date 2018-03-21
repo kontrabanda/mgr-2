@@ -14,9 +14,8 @@ BostonData <- setRefClass(
       name <<- "boston"
       allColnames <<- c("lat", "lng", "day", "month", "category")
       propertiesColnames <<- c("lat", "lng", "day", "month")
-      extractData()
     },
-    extractData = function() {
+    extractData = function(params = NULL) {
       data <- readData()
       print(nrow(data))
       rawData <<- parseData(data)

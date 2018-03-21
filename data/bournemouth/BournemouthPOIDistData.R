@@ -10,7 +10,6 @@ BournemouthPOIDistData <- setRefClass(
       name <<- "bournemouth"
       allColnames <<- c(c("lat", "lng", "month", "category"), const$poiCategories)
       propertiesColnames <<- c(c("lat", "lng", "month"), const$poiCategories)
-      extractData()
     },
     readData = function() {
       read.csv(file = const$bournemouthPOIPath)

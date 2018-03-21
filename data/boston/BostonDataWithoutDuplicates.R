@@ -10,7 +10,6 @@ BostonDataWithoutDuplicates <- setRefClass(
       name <<- "boston"
       allColnames <<- c("lat", "lng", "day", "month", "category")
       propertiesColnames <<- c("lat", "lng", "day", "month")
-      extractData()
     },
     parseData = function(inputData) {
       data <- callSuper(inputData)

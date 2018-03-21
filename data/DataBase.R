@@ -8,6 +8,9 @@ DataBase <- setRefClass(
     init = function() {
       print("DataBase: init") 
     },
+    extractData = function(params = NULL) {
+      print("DataBase: extractData")
+    },
     getData = function(category) {
       print("DataBase: getData, data with Label as Category")
     },

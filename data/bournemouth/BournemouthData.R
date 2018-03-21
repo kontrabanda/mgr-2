@@ -14,9 +14,8 @@ BournemouthData <- setRefClass(
       name <<- "bournemouth"
       allColnames <<- c("lat", "lng", "month", "category")
       propertiesColnames <<- c("lat", "lng", "month")
-      extractData()
     },
-    extractData = function() {
+    extractData = function(params = NULL) {
       data <- readData()
       categories <<- as.character(unique(data$Crime.type))
       rawData <<- parseData(data)
