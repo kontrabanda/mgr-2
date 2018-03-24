@@ -2,7 +2,7 @@
 
 mkdir -p ../log
 
-logFileName="../log/all_"$1"_"$2".txt"
+logFileName="../log/all_"$1".txt"
 
 echo "Log file in $logFileName"
 
