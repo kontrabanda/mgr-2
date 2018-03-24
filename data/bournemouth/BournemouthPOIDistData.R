@@ -21,7 +21,7 @@ BournemouthPOIDistData <- setRefClass(
         list(unique(arg))
       }
       summWithCategories <- data %>% group_by(lat, lng, month, year) %>% summarize(category = makeCategoryList(category))
-      summWithPoi <- data %>% group_by(lat, lng, month) %>% summarize_at(const$poiCategories, mean)
+      summWithPoi <- data %>% group_by(lat, lng, month, year) %>% summarize_at(const$poiCategories, mean)
       data <- summWithPoi
       data$category <- summWithCategories$category
       data
