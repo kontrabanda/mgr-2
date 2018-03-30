@@ -81,3 +81,4 @@ print(Sys.time())
 result <- crimes[!is.na(crimes$tempDay) & !is.na(crimes$tempNight) & !is.na(crimes$weatherDay) & !is.na(crimes$weatherNight), ]
 
 write.csv(result, file = '../data/bialystok/crimes_with_weather.csv')
+

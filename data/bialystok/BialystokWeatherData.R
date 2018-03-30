@@ -16,6 +16,11 @@ BialystokWeatherData <- setRefClass(
     },
     parseData = function(inputData) {
       data <- callSuper(inputData)
+      inputWithWeather <- removeIncompeleteData(inputData)
+      data$tempDay <- inputWithWeather$tempDay
+      data$tempNight <- inputWithWeather$tempNight
+      data$weatherDay <- inputWithWeather$weatherDay
+      data$weatherNight <- inputWithWeather$weatherNight
       makeCategoryList <- function(arg) {
         list(unique(arg))
       }
