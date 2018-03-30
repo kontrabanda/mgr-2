@@ -1,8 +1,8 @@
 source(file="./params/InputParams.R")
 
 inputParams <- InputParams()
-inputParams$dataName <- 'bialystok_poi_dens'
+inputParams$dataName <- 'bialystok_weather'
 inputParams$methodName <- 'knn'
-inputParams$monthInterval <- 6
-inputParams$fromYear <- 2010
-inputParams$poiRadius <- 100
+inputParams$monthInterval <- 3
+inputParams$fromYear <- 2015
+inputParams$poiRadius <- 200

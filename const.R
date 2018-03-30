@@ -12,6 +12,8 @@ Const <- setRefClass(
     bournemouthPOIPath="character",
     bostonPOIPath="character",
     
+    bialystokWeather="character",
+    
     bialystokPOIDensPaths="data.frame",
     bostonPOIDensPaths="data.frame",
     bournemouthPOIDensPaths="data.frame"
@@ -34,6 +36,8 @@ Const <- setRefClass(
       bialystokPOIDensPaths <<- data.frame(r100 = '../data/bialystok/bialystok_poi_dens_100.csv', r200 = '../data/bialystok/bialystok_poi_dens_200.csv', r500 = '../data/bialystok/bialystok_poi_dens_500.csv', stringsAsFactors=FALSE)
       bostonPOIDensPaths <<- data.frame(r100 = '../data/boston/boston_poi_dens_100.csv', r200 = '../data/boston/boston_poi_dens_200.csv', r500 = '../data/boston/boston_poi_dens_500.csv', stringsAsFactors=FALSE)
       bournemouthPOIDensPaths <<- data.frame(r100 = '../data/bournemouth/bournemouth_poi_dens_100.csv', r200 = '../data/bournemouth/bournemouth_poi_dens_200.csv', r500 = '../data/bournemouth/bournemouth_poi_dens_500.csv', stringsAsFactors=FALSE)
+      
+      bialystokWeather <<- '../data/bialystok/crimes_with_weather.csv'
     }
   )
 )
