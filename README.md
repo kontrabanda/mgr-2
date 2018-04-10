@@ -55,6 +55,7 @@ Jest to skrypt w którym tworzony jest obiekt inputParams <- InputParams(). Obie
 + ./tool.sh boundries bialystok
 + ./tool.sh poiDens bialystok 100
 + ./tool.sh auc norm-3
++ ./tool.sh varImp norm-3
 
 ### Parametry
 1. nazwa narzędzia (poiDist, poiDens, boundries)

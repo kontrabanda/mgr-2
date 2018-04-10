@@ -11,6 +11,8 @@ elif [ "$1" = "poiDens" ]; then
 	scriptPath="./scripts/poiDensity.R"
 elif [ "$1" = "auc" ]; then
 	scriptPath="./scripts/aucForExperimentWrapper.R"
+elif [ "$1" = "varImp" ]; then
+	scriptPath="./scripts/variableImportanceWrapper.R"
 else
 	echo "No such tool script!"
 	exit 1
