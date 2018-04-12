@@ -6,7 +6,7 @@ library(ggplot2)
 library(maptools)
 library(spatstat)
 library(lubridate)
-
+library(rgdal)
 
 ################## Bournemouth
 
@@ -41,7 +41,10 @@ bialystok <- spTransform(bialystok, CRS("+init=epsg:4326"))
 onlyBialystok <- aggregate(bialystok)
 
 populationBialystok <- intersect(populationPoland, onlyBialystok)
+
 plot(populationBialystok)
+
+#writeOGR(populationBialystok, "../data/additional/bialystok/population-only-bialystok", "population_bialystok_grid_2011", driver="ESRI Shapefile")
 
 n <- sum(populationBialystok$TOT)
 

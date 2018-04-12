@@ -26,8 +26,8 @@ if(is.na(inputParams)) {
 }
  
 validDataNames <- c(
-  'bialystok_norm', 'bialystok_poi_dist', 'bialystok_poi_dens', 'bialystok_weather', 'bialystok_norm_weather',
-  'bournemouth_norm', 'bournemouth_poi_dist', 'bournemouth_poi_dens',
+  'bialystok_norm', 'bialystok_poi_dist', 'bialystok_poi_dens', 'bialystok_weather', 'bialystok_norm_weather', 'bialystok_population',
+  'bournemouth_norm', 'bournemouth_poi_dist', 'bournemouth_poi_dens', 'bournemouth_population',
   'boston_norm', 'boston_poi_dist', 'boston_poi_dens')
 
 if(is.na(inputParams$dataName) || !(inputParams$dataName %in% validDataNames)) {
@@ -56,10 +56,12 @@ dataMapping <- list(
   bialystok_poi_dens = BialystokPOIDensData,
   bialystok_weather = BialystokWeatherData,
   bialystok_norm_weather = BialystokNormalForWeatherIntervalData,
+  bialystok_population = BialystokPopulationData,
   
   bournemouth_norm = BournemouthDataWithoutDuplicates,
   bournemouth_poi_dist = BournemouthPOIDistData,
   bournemouth_poi_dens = BournemouthPOIDensData,
+  bournemouth_population = BournemouthPopulationData,
   
   boston_norm = BostonDataWithoutDuplicates,
   boston_poi_dist = BostonPOIDistData,

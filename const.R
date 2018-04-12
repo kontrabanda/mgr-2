@@ -16,7 +16,10 @@ Const <- setRefClass(
     
     bialystokPOIDensPaths="data.frame",
     bostonPOIDensPaths="data.frame",
-    bournemouthPOIDensPaths="data.frame"
+    bournemouthPOIDensPaths="data.frame",
+    
+    bialystokPopulation='character',
+    bournemouthPopuplation='character'
   ),
   methods = list(
     initialize = function(classificatorName = '') {
@@ -38,6 +41,9 @@ Const <- setRefClass(
       bournemouthPOIDensPaths <<- data.frame(r100 = '../data/bournemouth/bournemouth_poi_dens_100.csv', r200 = '../data/bournemouth/bournemouth_poi_dens_200.csv', r500 = '../data/bournemouth/bournemouth_poi_dens_500.csv', stringsAsFactors=FALSE)
       
       bialystokWeather <<- '../data/bialystok/crimes_with_weather.csv'
+      
+      bialystokPopulation <<- '../data/bialystok/crimes_bialystok_with_population.csv'
+      bournemouthPopuplation <<- '../data/bournemouth/crimes_bournemouth_with_population.csv'
     }
   )
 )

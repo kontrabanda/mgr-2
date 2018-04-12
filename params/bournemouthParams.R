@@ -1,7 +1,7 @@
 source(file="./params/InputParams.R")
 
 inputParams <- InputParams()
-inputParams$dataName <- 'bournemouth_poi_dist'
+inputParams$dataName <- 'bournemouth_population'
 inputParams$methodName <- 'knn'
 inputParams$monthInterval <- 6
 inputParams$fromYear <- 2016
