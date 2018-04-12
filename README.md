@@ -70,3 +70,15 @@ Jest to skrypt w którym tworzony jest obiekt inputParams <- InputParams(). Obie
 
 ## Dane
 Dane umieszczam w folderze ../data (relatywnie do miejsca umieszczenia skryptów głównych). Każdy zbiór danych powinien znajdować się w oddzielnym folderze z nazwą zbioru (można zmienić w const.R)
+
+## Biblioteki R
++ lubridate
++ dplyr
++ e1071
++ randomForest
++ caret
++ liquidSVM
++ rpart.plot
++ ROCR
+
+install.packages(c('lubridate', 'dplyr', 'e1071', 'randomForest', 'caret', 'liquidSVM', 'rpart.plot', 'ROCR'))
