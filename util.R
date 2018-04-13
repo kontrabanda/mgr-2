@@ -6,11 +6,13 @@ source(file="./data/bialystok/BialystokPOIDensData.R")
 source(file="./data/bialystok/BialystokWeatherData.R")
 source(file="./data/bialystok/BialystokNormalForWeatherIntervalData.R")
 source(file="./data/bialystok/BialystokPopulationData.R")
+source(file="./data/bialystok/BialystokPOIDensWithoutGeoData.R")
 
 source(file="./data/bournemouth/BournemouthDataWithoutDuplicates.R")
 source(file="./data/bournemouth/BournemouthPOIDistData.R")
 source(file="./data/bournemouth/BournemouthPOIDensData.R")
 source(file="./data/bournemouth/BournemouthPopulationData.R")
+source(file="./data/bournemouth/BournemouthPOIDensWithoutGeoData.R")
 
 source(file="./data/boston/BostonDataWithoutDuplicates.R")
 source(file="./data/boston/BostonPOIDistData.R")

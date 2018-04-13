@@ -1,8 +1,8 @@
 source(file="./params/InputParams.R")
 
 inputParams <- InputParams()
-inputParams$dataName <- 'bournemouth_population'
+inputParams$dataName <- 'bournemouth_poi_dens_w_geo'
 inputParams$methodName <- 'knn'
-inputParams$monthInterval <- 6
+inputParams$monthInterval <- 3
 inputParams$fromYear <- 2016
-inputParams$poiRadius <- 100
+inputParams$poiRadius <- 200
