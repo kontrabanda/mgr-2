@@ -11,7 +11,7 @@ SVMModel <- setRefClass(
       name <<- 'SVM'
     },
     trainModel = function(trainData) {
-      trainData$label <- as.factor(ifelse(trainData$label==1, 1, -1))
+      trainData$label <- as.factor(ifelse(trainData$label==1, 1, 0))
       model <<- mcSVM(label~., trainData, threads=-1, partition_choice=6, predict.prob = T)
     },
     predictLabels = function(testData) {
