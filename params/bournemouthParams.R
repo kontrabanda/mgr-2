@@ -6,3 +6,4 @@ inputParams$methodName <- 'svm'
 inputParams$monthInterval <- 3
 inputParams$fromYear <- 2016
 inputParams$poiRadius <- 200
+inputParams$taskType <- 'crime-category'

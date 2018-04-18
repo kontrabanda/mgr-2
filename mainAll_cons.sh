@@ -1,3 +1,3 @@
 #!/bin/sh
 
-Rscript ./scripts/mainAll.R $@
+Rscript ./scripts/dispatcherAll.R $@

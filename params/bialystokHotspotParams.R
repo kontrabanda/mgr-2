@@ -6,4 +6,4 @@ inputParams$methodName <- 'svm'
 inputParams$monthInterval <- 3
 inputParams$fromYear <- 2010
 inputParams$poiRadius <- 200
-inputParams$taskType <- 'crime-category'
+inputParams$taskType <- 'hotspot-element'

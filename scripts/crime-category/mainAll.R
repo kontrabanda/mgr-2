@@ -2,7 +2,7 @@
 options(warn=-1)
 
 library(methods) # for Rscript
-source(file = './util.R')
+source(file = './scripts/crime-category/util.R')
 
 args = commandArgs(trailingOnly=TRUE)
 
