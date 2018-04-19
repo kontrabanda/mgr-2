@@ -30,7 +30,7 @@ SimpleLogger <- setRefClass(
       endTime <<- Sys.time()
       diff <<- endTime - startTime
       stopPrint()
-      save()
+      #save()
     },
     stopPrint = function() {
       endTimeFormat <- format(endTime, usetz = T)
@@ -39,7 +39,7 @@ SimpleLogger <- setRefClass(
       cat(sprintf('%s, diff time: %s \n\n', name, diffFormat))
     },
     save = function() {
-      write.csv(getSaveData(), file = getSavePath())
+      #write.csv(getSaveData(), file = getSavePath())
     },
     getSavePath = function() {
       filePath <- paste(const$resultPath, methodName, dataName, classficatorName, name, sep = '/')

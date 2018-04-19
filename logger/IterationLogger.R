@@ -44,8 +44,8 @@ IterationLogger <- setRefClass(
       cat(sprintf(' %s iteration:  %s, diff time: %s \n\n', categoryName, i, diffFormat))
     },
     save = function() {
-      write.csv(results, file = getSavePath(dataName, classficatorName))
-      print(results)
+      #write.csv(results, file = getSavePath(dataName, classficatorName))
+      #print(results)
     },
     getSavePath = function(dataName, classficatorName) {
       filePath <- paste(const$resultPath, methodName, dataName, classficatorName, 'logTime', sep = '/')

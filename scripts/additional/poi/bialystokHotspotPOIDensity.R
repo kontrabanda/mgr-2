@@ -32,5 +32,5 @@ pointsDensity <- data.frame(crimes)
 pointsDensity <- pointsDensity[, c('lng', 'lat')]
 
 result <- computeDensity()
-filePath <- paste("../data/points-in-hotspots/CHU_poi_dens_", r, ".csv", sep = '')
+filePath <- paste("../data/points-in-hotspots/bialystok/poi/", r,"/CHU_poi_dens_", r, ".csv", sep = '')
 write.csv(result, file = filePath)
