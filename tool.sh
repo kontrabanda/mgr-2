@@ -11,6 +11,8 @@ elif [ "$1" = "poiDens" ]; then
 	scriptPath="./scripts/tools/poiDensity.R"
 elif [ "$1" = "auc" ]; then
 	scriptPath="./scripts/tools/aucForExperimentWrapper.R"
+elif [ "$1" = "hsEl" ]; then
+	scriptPath="./scripts/hotspot-element/tools/computeClassificationDataWrapper.R"
 elif [ "$1" = "varImp" ]; then
 	scriptPath="./scripts/tools/variableImportanceWrapper.R"
 else
