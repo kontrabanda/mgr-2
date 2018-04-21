@@ -9,7 +9,7 @@ library(maptools)
 library(spatstat)
 library(rgdal)
 #library(spatialEco)
-library(dismo)
+#library(dismo)
 
 args = commandArgs(trailingOnly=TRUE)
 
