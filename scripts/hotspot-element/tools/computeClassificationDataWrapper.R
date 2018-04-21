@@ -8,7 +8,7 @@ library(ggplot2)
 library(maptools)
 library(spatstat)
 library(rgdal)
-library(spatialEco)
+#library(spatialEco)
 library(dismo)
 
 args = commandArgs(trailingOnly=TRUE)
