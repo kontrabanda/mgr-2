@@ -29,15 +29,19 @@ BialystokHotspotPOIData <- setRefClass(
       categoryPath <- paste(const$bialystokHotSpotPath, 'poi', r, category, sep = '/')
       categoryPath <- paste(categoryPath, '_poi_dens_', r, '.csv', sep = '')
       data <- read.csv(categoryPath)
+      data$label <- factor(data$label)
       data[, allColnames]
     },
     getTestData = function(category) {
       categoryPath <- paste(const$bialystokHotSpotPath, 'poi', r, category, sep = '/')
       categoryPath <- paste(categoryPath, '_poi_dens_', r, '.csv', sep = '')
       data <- read.csv(categoryPath)
-      date[, propertiesColnames]
+      data[, propertiesColnames]
     },
     getCategories = function() {
+      categories
+    },
+    getClassificationCategories = function() {
       categories
     }
   ),

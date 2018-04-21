@@ -1,9 +1,7 @@
 source(file="./params/InputParams.R")
 
 inputParams <- InputParams()
-inputParams$dataName <- 'bialystok_poi_dens_w_geo'
+inputParams$dataName <- 'bialystok_poi'
 inputParams$methodName <- 'svm'
-inputParams$monthInterval <- 3
-inputParams$fromYear <- 2010
 inputParams$poiRadius <- 200
 inputParams$taskType <- 'hotspot-element'

@@ -20,7 +20,6 @@ KNNModel <- setRefClass(
       trainWithoutLabel <- trainData[,-which(names(trainData) == "label")]
       trainWithoutLabel <- sapply(trainWithoutLabel, function(x) as.numeric(x))
       testData <- sapply(testData, function(x) as.numeric(x))
-      
       res <- knn(trainWithoutLabel, testData, factor(trainData$label), k = 3, prob=TRUE)
       #attributes(res)$prob
       

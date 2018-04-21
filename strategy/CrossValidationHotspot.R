@@ -21,12 +21,11 @@ CrossValidationHotspot <- setRefClass(
       experimentName <<- experimentName
       dataClass <<- dataClass
       k <<- 10
-      classification <<- HotspotClassification(ClassificationModel, dataClass$name)
+      classification <<- HotspotClassification(ClassificationModel, experimentName, dataClass$name)
       #saveResults <<- SaveResults(methodName, dataClass$name, classification$name)
-      folds <<- setFolds()
     },
-    setFolds = function() {
-      createFolds(1:dataClass$getRowSize(), k = k, list = FALSE)
+    setFolds = function(category) {
+      createFolds(1:nrow(dataClass$getData(category)), k = k, list = FALSE)
     },
     crossValidation = function() {
       logger <- SimpleLogger(experimentName, dataClass$name, classification$name)
@@ -38,6 +37,7 @@ CrossValidationHotspot <- setRefClass(
     },
     crossValidationCategory = function(category) {
       iterationLogger <- IterationLogger(experimentName, dataClass$name, classification$name, as.character(category))
+      folds <<- setFolds(category)
       for(i in 1:k) {
         iterationLogger$start(i)
         singleCategoryIteration(category, i)
@@ -48,6 +48,7 @@ CrossValidationHotspot <- setRefClass(
     singleCategoryIteration = function(category, iteration) {
       trainIndexes <- folds != iteration
       testIndexes <- folds == iteration
+      
       classification$classify(dataClass, trainIndexes, testIndexes, category, iteration)
     }
   )

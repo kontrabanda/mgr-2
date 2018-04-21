@@ -25,7 +25,7 @@ getAucsFromPaths <- function(dataSourceAucPaths) {
   
   names(results) <- methodNames
   namesOrder <- c('category', 'logicRegression', 'naiveBayes', 'kNN', 'DecisionTree', 'randomForest', 'SVM')
-  results <- results[, namesOrder]
+  results <- results[, intersect(namesOrder, methodNames)]
   results
 }
 

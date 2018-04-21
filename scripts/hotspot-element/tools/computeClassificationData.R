@@ -71,14 +71,8 @@ ranPoints <- randomPoints(outsideHotspotMask, numOfRandomPoints)
 ranPointsOutsideHotspot <- data.frame(lng = ranPoints[,1], lat = ranPoints[,2])
 coordinates(ranPointsOutsideHotspot) =~ lng+lat
 
-plot(hotspotOverlay)
-plot(city, add = T)
-plot(ranPointsOutsideHotspot, add = T)
-
 #### Category data for hotspot
 
-## pozmieniać nazwy
-## coś nie tak, test powinno być zero wyników dla tej maski, a jest 27 (tak jakby wylosowoła 27 z przedziału maski)
 getCrimesFromHotspot <- function(hotspot, crimesPoints) {
   inn <- crimesPoints
   coordinates(inn) =~ lng+lat
@@ -98,15 +92,13 @@ results$lng <- round(results$lng, digits = 4)
 randomizeResults <- results[sample(nrow(results)),]
 
 ### powinno byc 0 elementow
-test <- getCrimesFromHotspot(hotspotOverlay, data.frame(ranPointsOutsidHotspot))
+#test <- getCrimesFromHotspot(hotspotOverlay, data.frame(ranPointsOutsidHotspot))
 
 #Raster to matrix
 r_matrix<-as.matrix(hotspotOverlay)
 # ile procent to hotspoty
 P0<-length(which(r_matrix==0))/(length(r_matrix)-length(which(is.na(r_matrix))))
 P1<-length(which(r_matrix==1))/(length(r_matrix)-length(which(is.na(r_matrix))))
-
-
 
 resultPath <- paste('../data/points-in-hotspots/', crimeCategoryName, '.csv', sep = '')
 write.csv(x = randomizeResults, file = resultPath)
