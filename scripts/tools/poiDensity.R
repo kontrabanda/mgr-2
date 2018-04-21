@@ -38,7 +38,7 @@ if(type == 'all') {
   } else if(cityName == 'boston') {
     source(file = './scripts/additional/poi/bostonPOIDensity.R')
   } else if(cityName == 'bialystokHotspot') {
-    source(file = './scripts/additional/poi/bialystokHotspotPOIDensity.R')
+    source(file = './scripts/additional/poi/hotspot-element/bialystokHotspotPOIWrapper.R')
   } else {
     stop('No such dataset!')
   }
