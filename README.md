@@ -82,4 +82,4 @@ Dane umieszczam w folderze ../data (relatywnie do miejsca umieszczenia skryptów
 + rpart.plot
 + ROCR
 
-install.packages(c('lubridate', 'dplyr', 'e1071', 'randomForest', 'caret', 'liquidSVM', 'rpart.plot', 'ROCR'))
+install.packages(c('lubridate', 'dplyr', 'e1071', 'randomForest', 'caret', 'liquidSVM', 'rpart.plot', 'ROCR', 'raster'))

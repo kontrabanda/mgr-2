@@ -17,12 +17,12 @@ source(file="./const.R")
 #numOfRandomPoints <- 10000
 
 #### extract data
-bialystok <- shapefile("../data/additional/boundries/bialystok/bialystok.shp")
-bialystok <- spTransform(bialystok, CRS("+init=epsg:4326"))
-city <- aggregate(bialystok)
+#bialystok <- shapefile("../data/additional/boundries/bialystok/bialystok.shp")
+#bialystok <- spTransform(bialystok, CRS("+init=epsg:4326"))
+#city <- aggregate(bialystok)
 
-crimesData <- BialystokDataWithoutDuplicates()
-crimesData$extractData()
+#crimesData <- BialystokDataWithoutDuplicates()
+#crimesData$extractData()
 
 print(paste('Computing hotspots data for', crimesData$name , 'for category: ', crimeCategoryName, sep = ' '))
 

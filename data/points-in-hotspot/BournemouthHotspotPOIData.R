@@ -1,8 +1,8 @@
 library(lubridate)
 source(file="./data/DataBase.R")
 
-BialystokHotspotPOIData <- setRefClass(
-  Class="BialystokHotspotPOIData",
+BournemouthHotspotPOIData <- setRefClass(
+  Class="BournemouthHotspotPOIData",
   fields=list(
     categories="character",
     allColnames="character",
@@ -11,7 +11,7 @@ BialystokHotspotPOIData <- setRefClass(
   ),
   methods = list(
     initialize = function() {
-      name <<- "bialystok"
+      name <<- "bournemouth"
       allColnames <<- c(const$poiCategories ,c("label"))
       propertiesColnames <<- const$poiCategories
       r <<- 100
@@ -20,20 +20,22 @@ BialystokHotspotPOIData <- setRefClass(
       categories <<- extractCategories()
     },
     readData = function() {
-      read.csv(const$bialystokHotSpotPath, sep = ",")
+      read.csv(const$bournemouthHotSpotPath, sep = ",")
     },
     extractCategories = function() {
-      c('ALK', 'BEZP', 'CHU', 'GOSP', 'KRA', 'LEG', 'OŚ', 'PORZ', 'RD', 'ZWIE')
+      c('Anti-social behaviour', 'Bicycle theft', 'Burglary', 'Criminal damage and arson', 'Drugs', 
+        'Other crime', 'Other theft', 'Possession of weapons', 'Public order', 'Robbery', 
+        'Shoplifting', 'Theft from the person', 'Vehicle crime', 'Violence and sexual offences')
     },
     getData = function(category) {
-      categoryPath <- paste(const$bialystokHotSpotPath, 'poi', r, category, sep = '/')
+      categoryPath <- paste(const$bournemouthHotSpotPath, 'poi', r, category, sep = '/')
       categoryPath <- paste(categoryPath, '_poi_dens_', r, '.csv', sep = '')
       data <- read.csv(categoryPath)
       data$label <- factor(data$label)
       data[, allColnames]
     },
     getTestData = function(category) {
-      categoryPath <- paste(const$bialystokHotSpotPath, 'poi', r, category, sep = '/')
+      categoryPath <- paste(const$bournemouthHotSpotPath, 'poi', r, category, sep = '/')
       categoryPath <- paste(categoryPath, '_poi_dens_', r, '.csv', sep = '')
       data <- read.csv(categoryPath)
       data[, propertiesColnames]

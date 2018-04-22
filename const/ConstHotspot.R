@@ -3,6 +3,7 @@ ConstHotspot <- setRefClass(
   fields=list(
     resultPath="character",
     bialystokHotSpotPath="character",
+    bournemouthHotSpotPath="character",
     
     poiCategories="character"
   ),
@@ -11,6 +12,7 @@ ConstHotspot <- setRefClass(
       resultPath <<- '../results'
       
       bialystokHotSpotPath <<- '../data/points-in-hotspots/bialystok'
+      bournemouthHotSpotPath <<- '../data/points-in-hotspots/bournemouth'
       
       poiCategories <<- c('shop', 'communication', 'money', 'education', 'security', 
                           'public', 'health', 'food', 'culture', 'turist', 

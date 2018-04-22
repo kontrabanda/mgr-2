@@ -1,5 +1,8 @@
 source(file = './const/ConstHotspot.R')
+
+source(file = './data/points-in-hotspot/BournemouthHotspotPOIData.R')
 source(file = './data/points-in-hotspot/BialystokHotspotPOIData.R')
+
 source(file = './strategy/CrossValidationHotspot.R')
 
 source(file="./model/LogisticRegressionModel.R")
