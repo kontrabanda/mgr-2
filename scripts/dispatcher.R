@@ -17,6 +17,6 @@ source(file = paramsPath)
 
 if(inputParams$taskType == 'crime-category') {
   source(file = './scripts/crime-category/main.R')
-} else if(inputParams$taskType == 'hotspot-element') {
-  source(file = './scripts/hotspot-element/main.R')
+} else if(inputParams$taskType == 'hotspot') {
+  source(file = './scripts/hotspot/main.R')
 }

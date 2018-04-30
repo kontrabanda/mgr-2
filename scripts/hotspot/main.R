@@ -1,7 +1,7 @@
 library(methods)
 options(warn=-1)
 
-source(file = './scripts/hotspot-element/util.R')
+source(file = './scripts/hotspot/util.R')
 
 args = commandArgs(trailingOnly=TRUE)
 
@@ -18,7 +18,7 @@ print(paste('Method name:', inputParams$methodName, sep = ' '))
 
 ########################################
 
-source(file = './scripts/hotspot-element/mainCommon.R')
+source(file = './scripts/hotspot/mainCommon.R')
 
 data <- dataMapping[[inputParams$dataName]]()
 data$extractData(inputParams)

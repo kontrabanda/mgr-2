@@ -2,7 +2,8 @@ dataMapping <- list(
   bialystok_poi = BialystokHotspotPOIData,
   bournemouth_poi = BournemouthHotspotPOIData,
   
-  bialystok_grid_poi = BialystokGridHotspotPOIData
+  bialystok_grid_poi = BialystokGridHotspotPOIData,
+  bournemouth_grid_poi = BournemouthGridHotspotPOIData
 )
 
 methodMapping <- list(

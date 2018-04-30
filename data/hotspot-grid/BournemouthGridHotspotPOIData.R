@@ -1,8 +1,8 @@
 library(lubridate)
 source(file="./data/DataBase.R")
 
-BialystokGridHotspotPOIData <- setRefClass(
-  Class="BialystokGridHotspotPOIData",
+BournemouthGridHotspotPOIData <- setRefClass(
+  Class="BournemouthGridHotspotPOIData",
   fields=list(
     categories="character",
     allColnames="character",
@@ -11,7 +11,7 @@ BialystokGridHotspotPOIData <- setRefClass(
   ),
   methods = list(
     initialize = function() {
-      name <<- "bialystok"
+      name <<- "bournemouth"
       allColnames <<- c(const$poiCategories ,c("label"))
       propertiesColnames <<- const$poiCategories
       r <<- 200
@@ -20,20 +20,22 @@ BialystokGridHotspotPOIData <- setRefClass(
       categories <<- extractCategories()
     },
     readData = function() {
-      read.csv(const$bialystokGridHotSpotPath, sep = ",")
+      read.csv(const$bournemouthGridHotSpotPath, sep = ",")
     },
     extractCategories = function() {
-      c('ALK', 'BEZP', 'CHU', 'GOSP', 'KRA', 'LEG', 'OŚ', 'PORZ', 'RD', 'ZWIE')
+      c('Anti-social behaviour', 'Bicycle theft', 'Burglary', 'Criminal damage and arson', 'Drugs', 
+        'Other crime', 'Other theft', 'Possession of weapons', 'Public order', 'Robbery', 
+        'Shoplifting', 'Theft from the person', 'Vehicle crime', 'Violence and sexual offences')
     },
     getData = function(category) {
-      categoryPath <- paste(const$bialystokGridHotSpotPath, 'poi', r, category, sep = '/')
+      categoryPath <- paste(const$bournemouthGridHotSpotPath, 'poi', r, category, sep = '/')
       categoryPath <- paste(categoryPath, '_poi_dens_', r, '.csv', sep = '')
       data <- read.csv(categoryPath)
       data$label <- factor(data$label)
       data[, allColnames]
     },
     getTestData = function(category) {
-      categoryPath <- paste(const$bialystokGridHotSpotPath, 'poi', r, category, sep = '/')
+      categoryPath <- paste(const$bournemouthGridHotSpotPath, 'poi', r, category, sep = '/')
       categoryPath <- paste(categoryPath, '_poi_dens_', r, '.csv', sep = '')
       data <- read.csv(categoryPath)
       data[, propertiesColnames]

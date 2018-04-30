@@ -13,6 +13,8 @@ elif [ "$1" = "auc" ]; then
 	scriptPath="./scripts/tools/aucForExperimentWrapper.R"
 elif [ "$1" = "hsEl" ]; then
 	scriptPath="./scripts/hotspot-element/tools/computeClassificationDataWrapper.R"
+elif [ "$1" = "hsGrid" ]; then
+	scriptPath="./scripts/hotspot-grid/tools/computeClassificationDataWrapper.R"
 elif [ "$1" = "varImp" ]; then
 	scriptPath="./scripts/tools/variableImportanceWrapper.R"
 else

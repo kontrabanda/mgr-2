@@ -4,6 +4,7 @@ source(file = './data/points-in-hotspot/BournemouthHotspotPOIData.R')
 source(file = './data/points-in-hotspot/BialystokHotspotPOIData.R')
 
 source(file = './data/hotspot-grid/BialystokGridHotspotPOIData.R')
+source(file = './data/hotspot-grid/BournemouthGridHotspotPOIData.R')
 
 source(file = './strategy/CrossValidationHotspot.R')
 

@@ -13,21 +13,19 @@ source(file="./data/bialystok/BialystokDataWithoutDuplicates.R")
 source(file="./const.R")
 
 #### variables
-crimeCategoryName <- 'CHU'
-cellSize <- 1000
+#crimeCategoryName <- 'RD'
+#cellSize <- 200
 
 #### extract data
-bialystok <- shapefile("../data/additional/boundries/bialystok/bialystok.shp")
-bialystok <- spTransform(bialystok, CRS("+init=epsg:4326"))
-city <- aggregate(bialystok)
+#bialystok <- shapefile("../data/additional/boundries/bialystok/bialystok.shp")
+#bialystok <- spTransform(bialystok, CRS("+init=epsg:4326"))
+#city <- aggregate(bialystok)
 
-crimesData <- BialystokDataWithoutDuplicates()
-crimesData$extractData()
+#crimesData <- BialystokDataWithoutDuplicates()
+#crimesData$extractData()
 
 
-print(paste('Computing hotspots grid for', crimesData$name , 'for category: ', crimeCategoryName, sep = ' '))
-
-categories <- crimesData$categories
+print(paste('Computing hotspots grid for', crimesData$name , 'for category: ', crimeCategoryName, 'for cell size: ', cellSize, sep = ' '))
 
 categoryData <- crimesData$getData(crimeCategoryName)
 onlyCategoryData <- categoryData[categoryData$label == 1, ][1:2]
@@ -37,19 +35,16 @@ projection(onlyCategoryData) = projection(city)
 aeqdGlobal <- "+proj=aeqd +lat_0=0 +lon_0=0 +x_0=0 +y_0=0"
 
 onlyCategoryData <- spTransform(onlyCategoryData, aeqdGlobal)
-city <- spTransform(city, aeqdGlobal)
+cityTr <- spTransform(city, aeqdGlobal)
 
-rcity <- raster(city)
+rcity <- raster(cityTr)
 res(rcity) <- cellSize
 rcity
-r <- rasterize(city, rcity)
+r <- rasterize(cityTr, rcity)
 r
 
 nc <- rasterize(onlyCategoryData, r, fun = 'count', background = 0)
-ncrimes <- mask(nc, city)
-plot(ncrimes)
-plot(city, add = T)
-
+ncrimes <- mask(nc, cityTr)
 
 df.crimes.grid <- as.data.frame(ncrimes, xy=T, na.rm=T)
 
@@ -69,12 +64,6 @@ randomizeResults <- results[sample(nrow(results)),]
 resultPath <- paste('../data/hotspot-grid', crimesData$name, crimeCategoryName, sep = '/')
 resultPath <- paste(resultPath, '.csv', sep = '')
 write.csv(x = randomizeResults, file = resultPath)
-
-#######################################################
-head(results)
-head(results[, c('x', 'y')])
-
-points(results[, c('x', 'y')], pch = 4)
 
 
 
