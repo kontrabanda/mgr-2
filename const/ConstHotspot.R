@@ -5,6 +5,8 @@ ConstHotspot <- setRefClass(
     bialystokHotSpotPath="character",
     bournemouthHotSpotPath="character",
     
+    bialystokGridHotSpotPath="character",
+    
     poiCategories="character"
   ),
   methods = list(
@@ -13,6 +15,8 @@ ConstHotspot <- setRefClass(
       
       bialystokHotSpotPath <<- '../data/points-in-hotspots/bialystok'
       bournemouthHotSpotPath <<- '../data/points-in-hotspots/bournemouth'
+      
+      bialystokGridHotSpotPath <<- '../data/hotspot-grid/bialystok'
       
       poiCategories <<- c('shop', 'communication', 'money', 'education', 'security', 
                           'public', 'health', 'food', 'culture', 'turist', 
