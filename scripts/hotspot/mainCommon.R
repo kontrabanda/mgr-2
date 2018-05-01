@@ -1,6 +1,7 @@
 dataMapping <- list(
   bialystok_poi = BialystokHotspotPOIData,
   bournemouth_poi = BournemouthHotspotPOIData,
+  random_poi = RandomHotspotPOIData,
   
   bialystok_grid_poi = BialystokGridHotspotPOIData,
   bournemouth_grid_poi = BournemouthGridHotspotPOIData

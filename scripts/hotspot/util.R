@@ -2,6 +2,7 @@ source(file = './const/ConstHotspot.R')
 
 source(file = './data/points-in-hotspot/BournemouthHotspotPOIData.R')
 source(file = './data/points-in-hotspot/BialystokHotspotPOIData.R')
+source(file = './data/points-in-hotspot/RandomHotspotPOIData.R')
 
 source(file = './data/hotspot-grid/BialystokGridHotspotPOIData.R')
 source(file = './data/hotspot-grid/BournemouthGridHotspotPOIData.R')
