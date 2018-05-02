@@ -4,7 +4,8 @@ dataMapping <- list(
   random_poi = RandomHotspotPOIData,
   
   bialystok_grid_poi = BialystokGridHotspotPOIData,
-  bournemouth_grid_poi = BournemouthGridHotspotPOIData
+  bournemouth_grid_poi = BournemouthGridHotspotPOIData,
+  random_grid_poi = RandomGridHotspotPOIData
 )
 
 methodMapping <- list(
