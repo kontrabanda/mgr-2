@@ -19,7 +19,10 @@ Const <- setRefClass(
     bournemouthPOIDensPaths="data.frame",
     
     bialystokPopulation='character',
-    bournemouthPopuplation='character'
+    bournemouthPopuplation='character',
+    
+    bialystokSWDPath='character',
+    olsztynSWDPath='character'
   ),
   methods = list(
     initialize = function(classificatorName = '') {
@@ -35,6 +38,9 @@ Const <- setRefClass(
       bialystokPOIPath <<- '../data/bialystok/bialystok_poi_dist.csv'
       bostonPOIPath <<- '../data/boston/boston_poi_dist.csv'
       bournemouthPOIPath <<- '../data/bournemouth/bournemouth_poi_dist.csv'
+      
+      bialystokSWDPath <<- '../data/bialystok/swd/crimes_bialystok.csv'
+      olsztynSWDPath <<- '../data/olsztyn/swd/crimes_olsztyn.csv'
       
       bialystokPOIDensPaths <<- data.frame(r100 = '../data/bialystok/bialystok_poi_dens_100.csv', r200 = '../data/bialystok/bialystok_poi_dens_200.csv', r500 = '../data/bialystok/bialystok_poi_dens_500.csv', stringsAsFactors=FALSE)
       bostonPOIDensPaths <<- data.frame(r100 = '../data/boston/boston_poi_dens_100.csv', r200 = '../data/boston/boston_poi_dens_200.csv', r500 = '../data/boston/boston_poi_dens_500.csv', stringsAsFactors=FALSE)

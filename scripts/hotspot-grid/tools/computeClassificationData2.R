@@ -9,8 +9,8 @@ library(rgdal)
 library(spatialEco)
 library(dismo)
 
-source(file="./data/bialystok/BialystokDataWithoutDuplicates.R")
-source(file="./const.R")
+#source(file="./data/bialystok/BialystokDataWithoutDuplicates.R")
+#source(file="./const.R")
 
 #### variables
 #crimeCategoryName <- 'RD'
