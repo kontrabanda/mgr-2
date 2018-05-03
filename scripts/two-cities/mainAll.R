@@ -1,7 +1,7 @@
 library(methods)
 options(warn=-1)
 
-source(file = './scripts/hotspot/util.R')
+source(file = './scripts/two-cities/util.R')
 
 args = commandArgs(trailingOnly=TRUE)
 
@@ -18,19 +18,31 @@ print(paste('Data name:', inputParams$dataName, sep = ' '))
 
 ##############################
 
-source(file = './scripts/hotspot/mainCommon.R')
+dataMapping <- list(
+  swd_bialystok_olsztyn = BialystokOlsztynSWDData
+)
+
+methodMapping <- list(
+  logistic_regression = LogisticRegressionModel,
+  bayes = NaiveBayesModel,
+  knn = KNNModel,
+  random_forest = RandomForestModel,
+  svm = SVMModel,
+  decision_tree = DecisionTreeModel
+)
 
 methodNames <- c('Logistic Regression', 'Naive Bayes', 'knn', 'Random Forest', 'SVM', 'Decision Tree')
 
 data <- dataMapping[[inputParams$dataName]]()
-data$extractData(inputParams)
 
 computeForSingleMethod <- function(method, methodName) {
   tryCatch(
     {
       print(paste('Method', methodName, 'start at', Sys.time(), sep = ' '))
-      crossValidation <- CrossValidationHotspot(experimentName, data, method)
-      crossValidation$crossValidation()
+      ## todo tutaj dodać klasyfikację, tylko jak pogodzić dwa podejścia na raz? (że oba miasta na przemian)
+      
+      twoCities <- TwoCities(experimentName, data, method)
+      twoCities$classify()
       
       print(paste('Computing AUC and ROC for', methodName, sep = ' '))
       
@@ -55,8 +67,19 @@ computeForSingleMethod <- function(method, methodName) {
 write('', '../log/progress.out', append=F)
 write('', '../log/errors.out', append=F)
 
+data$extractData()
 i <- 1
 for(method in methodMapping) {
   computeForSingleMethod(method, methodNames[i])
   i <- i + 1
 }
+
+print('**********************COMPUTING REVERSE CITIES****************************')
+## reverse
+data$extractData(reverse = T)
+i <- 1
+for(method in methodMapping) {
+  computeForSingleMethod(method, methodNames[i])
+  i <- i + 1
+}
+

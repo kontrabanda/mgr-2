@@ -13,6 +13,7 @@ dataMapping <- list(
 methodMapping <- list(
   logistic_regression = LogisticRegressionModel,
   bayes = NaiveBayesModel,
+  knn = KNNModel,
   random_forest = RandomForestModel,
   svm = SVMModel,
   decision_tree = DecisionTreeModel

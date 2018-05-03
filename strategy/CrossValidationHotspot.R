@@ -8,7 +8,6 @@ source(file="./logger/IterationLogger.R")
 CrossValidationHotspot <- setRefClass(
   Class="CrossValidationHotspot",
   fields=list(
-    #saveResults="SaveResults",
     classification="HotspotClassification",
     experimentName="character",
     dataClass="DataBase",
@@ -22,7 +21,6 @@ CrossValidationHotspot <- setRefClass(
       dataClass <<- dataClass
       k <<- 10
       classification <<- HotspotClassification(ClassificationModel, experimentName, dataClass$name)
-      #saveResults <<- SaveResults(methodName, dataClass$name, classification$name)
     },
     setFolds = function(category) {
       createFolds(1:nrow(dataClass$getData(category)), k = k, list = FALSE)

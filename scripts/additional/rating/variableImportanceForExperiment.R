@@ -27,7 +27,12 @@ computeForSingleCategory <- function(dataSourceName, randomForestPath, categoryN
     }
   }
   
-  result <- data.frame(name = data$X, value = rowMeans(data[, 2:ncol(data)]))
+  if(ncol(data) > 2) {
+    result <- data.frame(name = data$X, value = rowMeans(data[, 2:ncol(data)]))
+  } else {
+    result <- data.frame(name = data$X, value = data$X0)
+  }
+
   result <- result[order(result$value), ]
   
   path <- paste(ratingResultsPath, dataSourceName, sep = '/')

@@ -19,4 +19,6 @@ if(inputParams$taskType == 'crime-category') {
   source(file = './scripts/crime-category/mainAll.R')
 } else if(inputParams$taskType == 'hotspot') {
   source(file = './scripts/hotspot/mainAll.R')
+} else if(inputParams$taskType == 'two-cities') {
+  source(file = './scripts/two-cities/mainAll.R')
 }

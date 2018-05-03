@@ -1,22 +1,33 @@
 library(lubridate)
 source(file="./data/DataBase.R")
 
-BialystokSWDGridHotspotPOIData <- setRefClass(
-  Class="BialystokSWDGridHotspotPOIData",
+BialystokOlsztynSWDData <- setRefClass(
+  Class="BialystokOlsztynSWDData",
   fields=list(
     categories="character",
     allColnames="character",
     propertiesColnames="character",
-    r="numeric"
+    r="numeric",
+    trainCityName='character',
+    testCityName='character'
   ),
   methods = list(
     initialize = function() {
-      name <<- "bialystokSWD"
+      name <<- "bialystokOlsztynSWD"
       allColnames <<- c(const$poiCategories ,c("label"))
       propertiesColnames <<- const$poiCategories
       r <<- 200
     },
-    extractData = function(params = NULL) {
+    extractData = function(params = NULL, reverse = F) {
+      if(reverse) {
+        name <<- 'trainOlsztynTestBialystok'
+        trainCityName <<- 'olsztyn'
+        testCityName <<- 'bialystok'
+      } else {
+        name <<- 'trainBialystokTestOlsztyn'
+        trainCityName <<- 'bialystok'
+        testCityName <<- 'olsztyn'
+      }
       categories <<- extractCategories()
     },
     readData = function() {
@@ -25,18 +36,28 @@ BialystokSWDGridHotspotPOIData <- setRefClass(
     extractCategories = function() {
       c('BOJ', 'CHU', 'FIN', 'INN', 'INT', 'KOM', 'KRA', 'KRY', 'ROZ', 'ZAT', 'ZGO')
     },
-    getFirstCity = function(category) {
-      categoryPath <- paste(const$bialystokSWDGridHotSpotPath, 'poi', r, category, sep = '/')
+    getData = function(cityName, category) {
+      cityFilePath <- getCityFilePath(cityName)
+      categoryPath <- paste(cityFilePath, 'poi', r, category, sep = '/')
       categoryPath <- paste(categoryPath, '_poi_dens_', r, '.csv', sep = '')
       data <- read.csv(categoryPath)
       data$label <- factor(data$label)
       data[, allColnames]
     },
-    getSecondCity = function(category) {
-      categoryPath <- paste(const$olsztynSWDGridHotSpotPath, 'poi', r, category, sep = '/')
+    getTestData = function(category) {
+      cityFilePath <- getCityFilePath(testCityName)
+      categoryPath <- paste(cityFilePath, 'poi', r, category, sep = '/')
       categoryPath <- paste(categoryPath, '_poi_dens_', r, '.csv', sep = '')
       data <- read.csv(categoryPath)
       data[, propertiesColnames]
+    },
+    getCityFilePath = function(cityName) {
+      if(cityName == 'bialystok') {
+        filePath <- const$bialystokSWDGridHotSpotPath
+      } else if(cityName == 'olsztyn') {
+        filePath <- const$olsztynSWDGridHotSpotPath
+      }
+      filePath
     },
     getCategories = function() {
       categories
