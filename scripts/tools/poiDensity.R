@@ -45,6 +45,10 @@ if(type == 'all') {
     source(file = './scripts/additional/poi/hotspot-grid/bialystokHotspotPOIWrapper.R')
   } else if(cityName == 'bournemouthGrid') {
     source(file = './scripts/additional/poi/hotspot-grid/bournemouthHotspotPOIWrapper.R')
+  } else if(cityName == 'bialystokSWDGrid') {
+    source(file = './scripts/additional/poi/hotspot-grid/bialystokSWDHotspotPOIWrapper.R')
+  } else if(cityName == 'olsztynSWDGrid') {
+    source(file = './scripts/additional/poi/hotspot-grid/olsztynSWDHotspotPOIWrapper.R')
   } else {
     stop('No such dataset!')
   }

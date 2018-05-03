@@ -20,7 +20,7 @@ print(paste('Data name:', inputParams$dataName, sep = ' '))
 
 source(file = './scripts/hotspot/mainCommon.R')
 
-methodNames <- c('logistic_regression', 'bayes', 'Random Forest', 'SVM')
+methodNames <- c('Logistic Regression', 'Naive Bayes', 'Random Forest', 'SVM', 'Decision Tree')
 
 data <- dataMapping[[inputParams$dataName]]()
 data$extractData(inputParams)
