@@ -16,6 +16,11 @@ TwoCitiesClassification <- setRefClass(
       trainData <- dataClass$getData(dataClass$trainCityName, category)
       testData <- dataClass$getTestData(category)
       
+      #print(paste('trainData: ', nrow(trainData), sep = ''))
+      #print(head(trainData))
+      #print(paste('testData: ', nrow(testData), sep = ''))
+      #print(head(testData))
+      
       classficationModel <- ClassificationModel()
       classficationModel$trainModel(trainData)
       results <- classficationModel$predictLabels(testData)

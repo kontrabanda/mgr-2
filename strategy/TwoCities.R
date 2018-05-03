@@ -23,12 +23,20 @@ TwoCities <- setRefClass(
       logger <- SimpleLogger(experimentName, dataClass$name, classification$name)
       logger$start()
       for(category in dataClass$getCategories()) {
-        iterationLogger <- IterationLogger(experimentName, dataClass$name, classification$name, as.character(category))
-        iterationLogger$start(1)
-        classification$classify(dataClass, category, 'result')
-        iterationLogger$stop(1)
+        classifyCategory(category)
       }
       logger$stop()
+    },
+    classifyCategory = function(category) {
+      iterationLogger <- IterationLogger(experimentName, dataClass$name, classification$name, as.character(category))
+      iterationLogger$start(1)
+      tryCatch({
+        classification$classify(dataClass, category, 'result')
+      }, error = function(cond) {
+        message(paste('ERROR in ', dataClass$name, ' in method ', classification$name, ' in category ', category, sep = ''))
+        message(cond)
+      })
+      iterationLogger$stop(1)
     }
   )
 )
