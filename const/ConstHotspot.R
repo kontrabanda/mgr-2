@@ -4,6 +4,8 @@ ConstHotspot <- setRefClass(
     resultPath="character",
     bialystokHotSpotPath="character",
     bournemouthHotSpotPath="character",
+    bialystokSWDHotSpotPath="character",
+    olsztynSWDHotSpotPath="character",
     randomHotSpotPath="character",
     
     bialystokGridHotSpotPath="character",
@@ -20,6 +22,8 @@ ConstHotspot <- setRefClass(
       
       bialystokHotSpotPath <<- '../data/points-in-hotspots/bialystok'
       bournemouthHotSpotPath <<- '../data/points-in-hotspots/bournemouth'
+      bialystokSWDHotSpotPath <<- '../data/points-in-hotspots/bialystokSWD'
+      olsztynSWDHotSpotPath <<- '../data/points-in-hotspots/olsztynSWD'
       randomHotSpotPath <<- '../data/points-in-hotspots/random'
       
       bialystokGridHotSpotPath <<- '../data/hotspot-grid/bialystok'

@@ -2,6 +2,8 @@ source(file = './const/ConstHotspot.R')
 
 source(file = './data/points-in-hotspot/BournemouthHotspotPOIData.R')
 source(file = './data/points-in-hotspot/BialystokHotspotPOIData.R')
+source(file = './data/points-in-hotspot/BialystokSWDHotspotPOIData.R')
+source(file = './data/points-in-hotspot/OlsztynSWDHotspotPOIData.R')
 source(file = './data/points-in-hotspot/RandomHotspotPOIData.R')
 
 source(file = './data/hotspot-grid/BialystokGridHotspotPOIData.R')
@@ -9,6 +11,7 @@ source(file = './data/hotspot-grid/BournemouthGridHotspotPOIData.R')
 source(file = './data/hotspot-grid/BialystokSWDGridHotspotPOIData.R')
 source(file = './data/hotspot-grid/OlsztynSWDGridHotspotPOIData.R')
 source(file = './data/hotspot-grid/RandomGridHotspotPOIData.R')
+source(file = './data/hotspot-grid/BialystokSWDGridOnePOIData.R')
 
 source(file = './strategy/CrossValidationHotspot.R')
 

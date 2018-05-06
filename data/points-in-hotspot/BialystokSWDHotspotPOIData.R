@@ -1,8 +1,8 @@
 library(lubridate)
 source(file="./data/DataBase.R")
 
-BialystokSWDGridHotspotPOIData <- setRefClass(
-  Class="BialystokSWDGridHotspotPOIData",
+BialystokSWDHotspotPOIData <- setRefClass(
+  Class="BialystokSWDHotspotPOIData",
   fields=list(
     categories="character",
     allColnames="character",
@@ -14,26 +14,26 @@ BialystokSWDGridHotspotPOIData <- setRefClass(
       name <<- "bialystokSWD"
       allColnames <<- c(const$poiCategories ,c("label"))
       propertiesColnames <<- const$poiCategories
-      r <<- 200
+      r <<- 100
     },
     extractData = function(params = NULL) {
       categories <<- extractCategories()
     },
     readData = function() {
-      read.csv(const$bialystokSWDGridHotSpotPath, sep = ",")
+      read.csv(const$bialystokSWDHotSpotPath, sep = ",")
     },
     extractCategories = function() {
       c('BOJ', 'CHU', 'FIN', 'INN', 'INT', 'KOM', 'KRA', 'KRY', 'ROZ', 'ZAT', 'ZGO')
     },
     getData = function(category) {
-      categoryPath <- paste(const$bialystokSWDGridHotSpotPath, 'poi', r, category, sep = '/')
+      categoryPath <- paste(const$bialystokSWDHotSpotPath, 'poi', r, category, sep = '/')
       categoryPath <- paste(categoryPath, '_poi_dens_', r, '.csv', sep = '')
       data <- read.csv(categoryPath)
       data$label <- factor(data$label)
       data[, allColnames]
     },
     getTestData = function(category) {
-      categoryPath <- paste(const$bialystokSWDGridHotSpotPath, 'poi', r, category, sep = '/')
+      categoryPath <- paste(const$bialystokSWDHotSpotPath, 'poi', r, category, sep = '/')
       categoryPath <- paste(categoryPath, '_poi_dens_', r, '.csv', sep = '')
       data <- read.csv(categoryPath)
       data[, propertiesColnames]

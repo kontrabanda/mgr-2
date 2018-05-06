@@ -1,6 +1,7 @@
 source(file = './const/ConstHotspot.R')
 
 source(file = './data/hotspot-grid/BialystokOlsztynSWDData.R')
+source(file = './data/points-in-hotspot/BialystokOlsztynSWDHotspotPOIData.R')
 
 source(file = './strategy/TwoCities.R')
 

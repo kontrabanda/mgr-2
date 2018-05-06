@@ -49,6 +49,12 @@ if(type == 'all') {
     source(file = './scripts/additional/poi/hotspot-grid/bialystokSWDHotspotPOIWrapper.R')
   } else if(cityName == 'olsztynSWDGrid') {
     source(file = './scripts/additional/poi/hotspot-grid/olsztynSWDHotspotPOIWrapper.R')
+  } else if(cityName == 'bialystokSWDEl') {
+    source(file = './scripts/additional/poi/hotspot-element/bialystokSWDHotspotPOIWrapper.R')
+  } else if(cityName == 'olsztynSWDEl') {
+    source(file = './scripts/additional/poi/hotspot-element/olsztynSWDHotspotPOIWrapper.R')
+  } else if(cityName == 'bialystokSWDOneGrid') {
+    source(file = './scripts/additional/poi/hotspot-grid/bialystokSWDOnePOIWrapper.R')
   } else {
     stop('No such dataset!')
   }

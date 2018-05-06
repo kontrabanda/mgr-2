@@ -19,7 +19,8 @@ print(paste('Data name:', inputParams$dataName, sep = ' '))
 ##############################
 
 dataMapping <- list(
-  swd_bialystok_olsztyn = BialystokOlsztynSWDData
+  bialystok_olsztyn_swd_element = BialystokOlsztynSWDHotspotPOIData,
+  bialystok_olsztyn_swd_grid = BialystokOlsztynSWDData
 )
 
 methodMapping <- list(

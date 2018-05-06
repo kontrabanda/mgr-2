@@ -66,6 +66,7 @@ for(singleCategory in categories) {
     },
     error = function(cond) {
       print(paste('ERROR in ', singleCategory, sep = ''))
+      print(cond)
     }
   )
 }

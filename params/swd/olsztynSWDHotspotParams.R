@@ -1,7 +1,7 @@
 source(file="./params/InputParams.R")
 
 inputParams <- InputParams()
-inputParams$dataName <- 'bialystok_SWD_grid_poi_one'
+inputParams$dataName <- 'olsztyn_SWD_poi'
 inputParams$methodName <- 'random_forest'
-inputParams$poiRadius <- 200
+inputParams$poiRadius <- 100
 inputParams$taskType <- 'hotspot'
