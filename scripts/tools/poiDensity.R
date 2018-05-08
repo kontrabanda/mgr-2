@@ -53,8 +53,14 @@ if(type == 'all') {
     source(file = './scripts/additional/poi/hotspot-element/bialystokSWDHotspotPOIWrapper.R')
   } else if(cityName == 'olsztynSWDEl') {
     source(file = './scripts/additional/poi/hotspot-element/olsztynSWDHotspotPOIWrapper.R')
+  } else if(cityName == 'bialystokSWDOneEl') {
+    source(file = './scripts/additional/poi/hotspot-element/poi-one/bialystokSWDHotspotOnePOIWrapper.R')
   } else if(cityName == 'bialystokSWDOneGrid') {
-    source(file = './scripts/additional/poi/hotspot-grid/bialystokSWDOnePOIWrapper.R')
+    source(file = './scripts/additional/poi/hotspot-grid/poi-one/bialystokSWDOnePOIWrapper.R')
+  } else if(cityName == 'olsztynSWDOneGrid') {
+    source(file = './scripts/additional/poi/hotspot-grid/poi-one/olsztynSWDOnePOIWrapper.R')
+  } else if(cityName == 'bournemouthOneGrid') {
+    source(file = './scripts/additional/poi/hotspot-grid/poi-one/bournemouthOnePOIWrapper.R')
   } else {
     stop('No such dataset!')
   }

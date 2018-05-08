@@ -57,6 +57,8 @@ write('', '../log/errors.out', append=F)
 
 i <- 1
 for(method in methodMapping) {
-  computeForSingleMethod(method, methodNames[i])
+  #if(methodNames[i] %in% c('Decision Tree')) {
+    computeForSingleMethod(method, methodNames[i])
+  #}
   i <- i + 1
 }

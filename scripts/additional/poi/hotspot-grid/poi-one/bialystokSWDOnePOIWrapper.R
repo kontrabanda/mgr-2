@@ -12,5 +12,5 @@ categories <- getCategoriesFromPath(path)
 for(singleCategory in categories) {
   print(paste('Processing', singleCategory))
   categoryName <<- singleCategory
-  source(file = './scripts/additional/poi/hotspot-grid/bialystokSWDOnePOIDens.R')
+  source(file = './scripts/additional/poi/hotspot-grid/poi-one/bialystokSWDOnePOIDens.R')
 }

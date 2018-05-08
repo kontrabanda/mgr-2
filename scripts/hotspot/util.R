@@ -6,12 +6,17 @@ source(file = './data/points-in-hotspot/BialystokSWDHotspotPOIData.R')
 source(file = './data/points-in-hotspot/OlsztynSWDHotspotPOIData.R')
 source(file = './data/points-in-hotspot/RandomHotspotPOIData.R')
 
+source(file = './data/points-in-hotspot/poi-one/BialystokSWDHotspotOnePOIData.R')
+
 source(file = './data/hotspot-grid/BialystokGridHotspotPOIData.R')
 source(file = './data/hotspot-grid/BournemouthGridHotspotPOIData.R')
 source(file = './data/hotspot-grid/BialystokSWDGridHotspotPOIData.R')
 source(file = './data/hotspot-grid/OlsztynSWDGridHotspotPOIData.R')
 source(file = './data/hotspot-grid/RandomGridHotspotPOIData.R')
-source(file = './data/hotspot-grid/BialystokSWDGridOnePOIData.R')
+
+source(file = './data/hotspot-grid/poi-one/BialystokSWDGridOnePOIData.R')
+source(file = './data/hotspot-grid/poi-one/OlsztynSWDGridOnePOIData.R')
+source(file = './data/hotspot-grid/poi-one/BournemouthGridOnePOIData.R')
 
 source(file = './strategy/CrossValidationHotspot.R')
 

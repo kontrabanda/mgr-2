@@ -14,8 +14,7 @@ HotspotClassification <- setRefClass(
   methods = list(
     classify = function(dataClass, trainIndexes, testIndexes, category, fileName) {
       trainData <- dataClass$getData(category)[trainIndexes, ]
-      testData <- dataClass$getTestData(category)[testIndexes, ]
-      
+      testData <- dataClass$getTestData(category)[testIndexes, , drop = F]
       classficationModel <- ClassificationModel()
       classficationModel$trainModel(trainData)
       results <- classficationModel$predictLabels(testData)
