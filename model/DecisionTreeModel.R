@@ -13,7 +13,14 @@ DecisionTreeModel <- setRefClass(
       name <<- 'DecisionTree'
     },
     trainModel = function(trainData) {
-      model <<- rpart(label~., data=trainData)
+      if(exists("decisionTreeParams")) {
+        print("Decision Tree with params")
+        rcontrol <- rpart.control(minsplit = decisionTreeParams$minsplit, cp = decisionTreeParams$cp)
+        model <<- rpart(label~., data=trainData, control = rcontrol)
+      } else {
+        model <<- rpart(label~., data=trainData)
+      }
+      model
     },
     predictLabels = function(testData) {
       pred <- predict(model, newdata=testData)
